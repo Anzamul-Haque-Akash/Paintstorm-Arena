@@ -11,6 +11,9 @@ namespace Character_Scripts
         private void Start()
         {
             _mainCamera = Camera.main;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void FixedUpdate()
