@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors: []
 --- !u!1 &5702245666269524298
 GameObject:
@@ -1472,6 +1472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TurnSpeed: 15
+  m_AimLayerRig: {fileID: 5478741477060499249}
+  m_AimDuration: 0.18
 --- !u!4 &6121800440599845729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8021001004253913084, guid: f99b5bb02948b204aa616163316d53a8,

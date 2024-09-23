@@ -15,8 +15,8 @@ namespace Character_Scripts
             _input.x = Input.GetAxis("Horizontal");
             _input.y = Input.GetAxis("Vertical");
             
-            m_Animator.SetFloat(InputX, _input.x);
-            m_Animator.SetFloat(InputY, _input.y);
+            m_Animator.SetFloat(InputX, _input.x, 0.1f, Time.deltaTime);
+            m_Animator.SetFloat(InputY, _input.y, 0.1f, Time.deltaTime);
         }
     }
 }
