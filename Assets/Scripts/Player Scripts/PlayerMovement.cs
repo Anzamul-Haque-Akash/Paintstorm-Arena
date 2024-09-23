@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Character_Scripts
+namespace Player_Scripts
 {
-    public class CharacterLocomotion : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Animator m_Animator;
 

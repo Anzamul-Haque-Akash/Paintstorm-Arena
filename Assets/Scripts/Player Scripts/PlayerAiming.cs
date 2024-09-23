@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-namespace Character_Scripts
+namespace Player_Scripts
 {
-    public class CharacterAiming : MonoBehaviour
+    public class PlayerAiming : MonoBehaviour
     {
         [SerializeField] private float m_TurnSpeed;
         [SerializeField] private Rig m_AimLayerRig;
