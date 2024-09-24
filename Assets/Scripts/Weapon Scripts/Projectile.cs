@@ -1,4 +1,3 @@
-using System;
 using Shaders;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ namespace Weapon_Scripts
 {
     public class Projectile : MonoBehaviour
     {
-        public float m_ProjectileSpeed;
+        [SerializeField] private float m_ProjectileSpeed;
         private Rigidbody _rb;
 
         private void Start()

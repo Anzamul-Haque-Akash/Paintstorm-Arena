@@ -4,23 +4,20 @@ namespace Weapon_Scripts
 {
     public class RaycastWeapon : MonoBehaviour
     {
-        public Transform m_RayCastOrigin;
-        public Transform m_RatcastDestination;
-        public GameObject m_Projectile;
-        public bool m_IsFiring;
+        [SerializeField] private Transform m_RayCastOrigin;
+        [SerializeField] private Transform m_RatcastDestination;
+        [SerializeField] private GameObject m_Projectile;
+        [field:SerializeField] public bool IsFiring { get; private set;}
 
         private Ray _ray;
         private RaycastHit _hitInfo;
         private Vector3 _direction;
 
-        private void Start()
-        {
-            m_IsFiring = false;
-        }
-
+        private void Start() => IsFiring = false;
+        
         public void StartFiring()
         {
-            m_IsFiring = true;
+            IsFiring = true;
 
             _direction = (m_RatcastDestination.position - m_RayCastOrigin.position).normalized;
 
@@ -37,9 +34,6 @@ namespace Weapon_Scripts
             }
         }
 
-        public void StopFiring()
-        {
-            m_IsFiring = false;
-        }
+        public void StopFiring() => IsFiring = false;
     }
 }
