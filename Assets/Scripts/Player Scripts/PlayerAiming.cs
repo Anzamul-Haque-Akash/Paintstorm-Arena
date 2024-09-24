@@ -12,6 +12,7 @@ namespace Player_Scripts
 
         private Camera _mainCamera;
         private RaycastWeapon _raycastWeapon;
+        private bool _isAiming;
 
         private void Start()
         {
@@ -27,8 +28,7 @@ namespace Player_Scripts
         {
             float yawCamera = _mainCamera.transform.eulerAngles.y;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f),
-                m_TurnSpeed * Time.fixedDeltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f),m_TurnSpeed * Time.fixedDeltaTime);
         }
 
         private void Update()
@@ -36,8 +36,9 @@ namespace Player_Scripts
             if (Input.GetMouseButton(1)) m_AimLayerRig.weight += Time.deltaTime / m_AimDuration;
             else m_AimLayerRig.weight -= Time.deltaTime / m_AimDuration;
 
+            _isAiming = m_AimLayerRig.weight >= 1; 
 
-            if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
+            if (_isAiming) if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
             if (Input.GetMouseButtonUp(0)) _raycastWeapon.StopFiring();
         }
     }

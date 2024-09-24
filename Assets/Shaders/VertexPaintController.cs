@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Shaders
@@ -5,7 +6,7 @@ namespace Shaders
     public class VertexPaintController : MonoBehaviour
     {
         [SerializeField] private Texture2D m_ColorMaskBase;
-        [SerializeField] private Texture2D m_HitTexture;
+        [SerializeField] private List<Texture2D> m_HitTexture;
 
         private Camera _camera;
         private Renderer _rend;
@@ -33,11 +34,14 @@ namespace Shaders
             int pixelX = (int)(textureCoordinate.x * _templateColorMask.width);
             int pixelY = (int)(textureCoordinate.y * _templateColorMask.height);
 
-            for (int x = 0; x < m_HitTexture.width; x++)
+            int hitTextureRandomInxed = Random.Range(0, m_HitTexture.Count);
+            Texture2D hitTexture = m_HitTexture[hitTextureRandomInxed];
+            
+            for (int x = 0; x < hitTexture.width; x++)
             {
-                for (int y = 0; y < m_HitTexture.height; y++)
+                for (int y = 0; y < hitTexture.height; y++)
                 {
-                    Color pixelColor = m_HitTexture.GetPixel(x, y);
+                    Color pixelColor = hitTexture.GetPixel(x, y);
                     Color pixelColorMask = _templateColorMask.GetPixel(pixelX + x, pixelY + y);
 
                     _templateColorMask.SetPixel(pixelX + x, pixelY + y,

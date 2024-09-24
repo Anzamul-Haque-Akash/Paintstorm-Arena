@@ -850,7 +850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ColorMaskBase: {fileID: 2800000, guid: af6fbe2406f9c4d2c8effa8c39568872, type: 3}
-  m_HitTexture: {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
+  m_HitTexture:
+  - {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
 --- !u!1 &867754114
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +972,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ColorMaskBase: {fileID: 2800000, guid: af6fbe2406f9c4d2c8effa8c39568872, type: 3}
-  m_HitTexture: {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
+  m_HitTexture:
+  - {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
 --- !u!1 &942679313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ColorMaskBase: {fileID: 2800000, guid: af6fbe2406f9c4d2c8effa8c39568872, type: 3}
-  m_HitTexture: {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
+  m_HitTexture:
+  - {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
 --- !u!1 &1001797570
 GameObject:
   m_ObjectHideFlags: 3
@@ -1614,7 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ColorMaskBase: {fileID: 2800000, guid: af6fbe2406f9c4d2c8effa8c39568872, type: 3}
-  m_HitTexture: {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
+  m_HitTexture:
+  - {fileID: 2800000, guid: 3cb69536e46ff4ea3ace35eea9a8c910, type: 3}
 --- !u!1 &1708532637
 GameObject:
   m_ObjectHideFlags: 3
