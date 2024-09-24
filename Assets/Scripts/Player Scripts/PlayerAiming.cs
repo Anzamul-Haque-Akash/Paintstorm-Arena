@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using Weapon_Scripts;
 
 namespace Player_Scripts
 {
@@ -10,6 +11,7 @@ namespace Player_Scripts
         [SerializeField] private float m_AimDuration;
         
         private Camera _mainCamera;
+        private RaycastWeapon _raycastWeapon;
         
         private void Start()
         {
@@ -17,6 +19,8 @@ namespace Player_Scripts
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            _raycastWeapon = GetComponentInChildren<RaycastWeapon>();
         }
 
         private void FixedUpdate()
@@ -30,6 +34,12 @@ namespace Player_Scripts
         {
             if (Input.GetMouseButton(1)) m_AimLayerRig.weight += Time.deltaTime / m_AimDuration;
             else m_AimLayerRig.weight -= Time.deltaTime / m_AimDuration;
+
+
+            if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
+            if (Input.GetMouseButtonUp(0)) _raycastWeapon.StopFiring();
+        
+            
         }
     }
 }
