@@ -7,7 +7,7 @@ namespace Weapon_Scripts
         private Camera _mainCamera;
         private Ray _ray;
         private RaycastHit _hitInfo;
-        
+
         private void Start()
         {
             _mainCamera = Camera.main;

@@ -12,7 +12,7 @@ namespace Weapon_Scripts
         private Ray _ray;
         private RaycastHit _hitInfo;
         private Vector3 _direction;
-        
+
         private void Start()
         {
             m_IsFiring = false;
@@ -26,12 +26,12 @@ namespace Weapon_Scripts
 
             _ray.origin = m_RayCastOrigin.position;
             _ray.direction = _direction;
-            
+
             Quaternion targetRotation = Quaternion.LookRotation(_direction);
-            
+
             Instantiate(m_Projectile, _ray.origin, targetRotation);
-            
-            if(Physics.Raycast(_ray, out _hitInfo))
+
+            if (Physics.Raycast(_ray, out _hitInfo))
             {
                 Debug.DrawLine(_ray.origin, _hitInfo.point, Color.red, 1f);
             }

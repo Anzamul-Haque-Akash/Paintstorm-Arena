@@ -9,10 +9,10 @@ namespace Player_Scripts
         [SerializeField] private float m_TurnSpeed;
         [SerializeField] private Rig m_AimLayerRig;
         [SerializeField] private float m_AimDuration;
-        
+
         private Camera _mainCamera;
         private RaycastWeapon _raycastWeapon;
-        
+
         private void Start()
         {
             _mainCamera = Camera.main;
@@ -26,8 +26,9 @@ namespace Player_Scripts
         private void FixedUpdate()
         {
             float yawCamera = _mainCamera.transform.eulerAngles.y;
-            
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f), m_TurnSpeed * Time.fixedDeltaTime);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f),
+                m_TurnSpeed * Time.fixedDeltaTime);
         }
 
         private void Update()
@@ -38,8 +39,6 @@ namespace Player_Scripts
 
             if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
             if (Input.GetMouseButtonUp(0)) _raycastWeapon.StopFiring();
-        
-            
         }
     }
 }

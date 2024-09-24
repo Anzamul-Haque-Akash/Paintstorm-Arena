@@ -1,4 +1,5 @@
 using System;
+using Shaders;
 using UnityEngine;
 
 namespace Weapon_Scripts
@@ -17,10 +18,15 @@ namespace Weapon_Scripts
         {
             _rb.velocity = transform.forward * m_ProjectileSpeed;
         }
-        
+
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Hit on " + other.transform.name);
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10f))
+            {
+                other.gameObject.GetComponent<VertexPaintController>()?.Paint(hit);
+            }
+            
+            Destroy(gameObject);
         }
     }
 }
