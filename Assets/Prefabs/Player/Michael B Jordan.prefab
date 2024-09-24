@@ -2060,7 +2060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TurnSpeed: 15
   m_AimLayerRig: {fileID: 5478741477060499249}
-  m_AimDuration: 0.18
+  m_AimDuration: 0.16
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,
