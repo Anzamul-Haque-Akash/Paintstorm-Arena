@@ -402,6 +402,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 183004437}
+  - {fileID: 588854023}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 166.818, z: 0}
 --- !u!114 &330585547
@@ -606,6 +607,50 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &588854022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588854023}
+  - component: {fileID: 588854024}
+  m_Layer: 0
+  m_Name: Cross Hair Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &588854023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588854022}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588854024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588854022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ba0bdf073d4cf4281eeea831ad6f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &790128853
 GameObject:
   m_ObjectHideFlags: 3
@@ -1538,6 +1583,11 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 183004437}
+    - target: {fileID: 3096954833122471570, guid: a2c96725de8bc7d49b11147add8e0270,
+        type: 3}
+      propertyPath: m_RatcastDestination
+      value: 
+      objectReference: {fileID: 588854023}
     - target: {fileID: 3590667850073007147, guid: a2c96725de8bc7d49b11147add8e0270,
         type: 3}
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform

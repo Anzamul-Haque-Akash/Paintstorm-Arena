@@ -1216,6 +1216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RayCastOrigin: {fileID: 3635939352017732296}
+  m_RatcastDestination: {fileID: 0}
+  m_Projectile: {fileID: 4488212945830300154, guid: 7d73465c04032c049a66d6f127612c55,
+    type: 3}
+  m_ProjectileForce: 15
   m_IsFiring: 0
 --- !u!1 &5905391212043083804
 GameObject:
