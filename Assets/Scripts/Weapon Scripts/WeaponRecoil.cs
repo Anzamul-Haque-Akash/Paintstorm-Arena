@@ -8,6 +8,7 @@ namespace Weapon_Scripts
         public Cinemachine.CinemachineImpulseSource m_CameraShake;
         public Vector2[] m_RecoilPattern;
         public float m_Duration;
+        public Animator m_RigLayerAnimator;
         
         private float _verticalRecoil;
         private float _horizontalRecoil;
@@ -31,6 +32,9 @@ namespace Weapon_Scripts
             
             _index = Random.Range(0, m_RecoilPattern.Length);
             _verticalRecoil = m_RecoilPattern[_index].y;
+            
+            m_RigLayerAnimator.SetTrigger("isShooting");
+            
         }
         
         private void Update()
