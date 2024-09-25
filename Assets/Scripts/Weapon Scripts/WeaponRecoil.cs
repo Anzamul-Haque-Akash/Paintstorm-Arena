@@ -5,14 +5,23 @@ namespace Weapon_Scripts
     public class WeaponRecoil : MonoBehaviour
     {
         public Cinemachine.CinemachineFreeLook m_PlayerCamera;
+        public Cinemachine.CinemachineImpulseSource m_CameraShake;
         public float m_VerticalRecoil;
         public float m_Duration;
 
         private float _time;
+        private Camera _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
 
         public void GenerateRecoil()
         {
             _time = m_Duration;
+            
+            m_CameraShake.GenerateImpulse(_camera.transform.forward);
         }
 
         private void Update()
