@@ -5,8 +5,10 @@ namespace Weapon_Scripts
     public class RaycastWeapon : MonoBehaviour
     {
         [SerializeField] private Transform m_RayCastOrigin;
-        [SerializeField] private Transform m_RatcastDestination;
+        [SerializeField] private Transform m_RaycastDestination;
         [SerializeField] private GameObject m_Projectile;
+        [SerializeField] private WeaponRecoil m_WeaponRecoil;
+        
         [field:SerializeField] public bool IsFiring { get; private set;}
 
         private Ray _ray;
@@ -19,7 +21,7 @@ namespace Weapon_Scripts
         {
             IsFiring = true;
 
-            _direction = (m_RatcastDestination.position - m_RayCastOrigin.position).normalized;
+            _direction = (m_RaycastDestination.position - m_RayCastOrigin.position).normalized;
 
             _ray.origin = m_RayCastOrigin.position;
             _ray.direction = _direction;
@@ -32,6 +34,8 @@ namespace Weapon_Scripts
             {
                 Debug.DrawLine(_ray.origin, _hitInfo.point, Color.red, 1f);
             }
+            
+            m_WeaponRecoil.GenerateRecoil();
         }
 
         public void StopFiring() => IsFiring = false;
