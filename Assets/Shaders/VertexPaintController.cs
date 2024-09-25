@@ -30,26 +30,34 @@ namespace Shaders
             if (_rend == null || _rend.sharedMaterial == null || meshCollider == null) return;
 
             Vector2 textureCoordinate = hit.textureCoord;
+            Texture2D hitTexture = GetRandomHitTextureFromTheList();
 
             int pixelX = (int)(textureCoordinate.x * _templateColorMask.width);
             int pixelY = (int)(textureCoordinate.y * _templateColorMask.height);
+            Vector2Int paintPixelPosition = new Vector2Int(pixelX, pixelY);
 
-            int hitTextureRandomInxed = Random.Range(0, m_HitTexture.Count);
-            Texture2D hitTexture = m_HitTexture[hitTextureRandomInxed];
+            int pixelXOffset = pixelX - (hitTexture.width / 2);
+            int pixelYOffset = pixelY - (hitTexture.height / 2);
             
             for (int x = 0; x < hitTexture.width; x++)
             {
                 for (int y = 0; y < hitTexture.height; y++)
                 {
                     Color pixelColor = hitTexture.GetPixel(x, y);
-                    Color pixelColorMask = _templateColorMask.GetPixel(pixelX + x, pixelY + y);
+                    Color pixelColorMask = _templateColorMask.GetPixel(pixelXOffset + x, pixelYOffset + y);
 
-                    _templateColorMask.SetPixel(pixelX + x, pixelY + y,
+                    _templateColorMask.SetPixel(pixelXOffset + x, pixelYOffset + y,
                         new Color(0, pixelColorMask.g * pixelColor.g, 0));
                 }
             }
 
             _templateColorMask.Apply();
+        }
+
+        private Texture2D GetRandomHitTextureFromTheList()
+        {
+            int hitTextureRandomInxed = Random.Range(0, m_HitTexture.Count);
+            return m_HitTexture[hitTextureRandomInxed];
         }
 
         private void CreatTexture()
