@@ -1777,26 +1777,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216419807961137499, guid: a2c96725de8bc7d49b11147add8e0270,
+        type: 3}
+      propertyPath: m_RaycastDestination
+      value: 
+      objectReference: {fileID: 588854023}
     - target: {fileID: 1697704247910645058, guid: a2c96725de8bc7d49b11147add8e0270,
         type: 3}
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 183004437}
-    - target: {fileID: 2586676146152189927, guid: a2c96725de8bc7d49b11147add8e0270,
-        type: 3}
-      propertyPath: m_PlayerCamera
-      value: 
-      objectReference: {fileID: 72993714}
-    - target: {fileID: 3096954833122471570, guid: a2c96725de8bc7d49b11147add8e0270,
-        type: 3}
-      propertyPath: m_RaycastDestination
-      value: 
-      objectReference: {fileID: 588854023}
     - target: {fileID: 3590667850073007147, guid: a2c96725de8bc7d49b11147add8e0270,
         type: 3}
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 183004437}
+    - target: {fileID: 3757735707542520768, guid: a2c96725de8bc7d49b11147add8e0270,
+        type: 3}
+      propertyPath: m_PlayerCamera
+      value: 
+      objectReference: {fileID: 72993714}
     - target: {fileID: 4886430304493968526, guid: a2c96725de8bc7d49b11147add8e0270,
         type: 3}
       propertyPath: m_LocalPosition.x

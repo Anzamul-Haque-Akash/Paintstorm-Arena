@@ -15,6 +15,8 @@ namespace Weapon_Scripts
         private int _index;
         private float _time;
         private Camera _camera;
+        
+        private static readonly int IsShooting = Animator.StringToHash("isShooting");
 
         private void Start()
         {
@@ -33,7 +35,7 @@ namespace Weapon_Scripts
             _index = Random.Range(0, m_RecoilPattern.Length);
             _verticalRecoil = m_RecoilPattern[_index].y;
             
-            m_RigLayerAnimator.SetTrigger("isShooting");
+            m_RigLayerAnimator.SetTrigger(IsShooting);
             
         }
         

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using Weapon_Scripts;
 
 namespace Player_Scripts
@@ -7,8 +6,6 @@ namespace Player_Scripts
     public class PlayerAiming : MonoBehaviour
     {
         [SerializeField] private float m_TurnSpeed;
-        [SerializeField] private Rig m_AimLayerRig;
-        [SerializeField] private float m_AimDuration;
 
         private Camera _mainCamera;
         private RaycastWeapon _raycastWeapon;
@@ -33,14 +30,7 @@ namespace Player_Scripts
 
         private void Update()
         {
-            // if (Input.GetMouseButton(1)) m_AimLayerRig.weight += Time.deltaTime / m_AimDuration;
-            // else m_AimLayerRig.weight -= Time.deltaTime / m_AimDuration;
-            m_AimLayerRig.weight = 1f;
-
-            _isAiming = m_AimLayerRig.weight >= 1; 
-
-            if (_isAiming) if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
-            if (Input.GetMouseButtonUp(0)) _raycastWeapon.StopFiring();
+            if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
         }
     }
 }

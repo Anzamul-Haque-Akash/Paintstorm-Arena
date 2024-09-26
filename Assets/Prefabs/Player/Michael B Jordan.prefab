@@ -658,7 +658,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7864765438568384277}
-  - {fileID: 7367936608066104775}
   m_Father: {fileID: 4886430304493968526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2829871165801805917
@@ -1076,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Effectors: []
 --- !u!1 &4515078600452670407
 GameObject:
@@ -1109,138 +1108,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6906415387306576853}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &5702245666269524298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7367936608066104775}
-  - component: {fileID: 3096954833122471570}
-  - component: {fileID: 2586676146152189927}
-  - component: {fileID: 5328779324624138084}
-  m_Layer: 0
-  m_Name: PaintBall Gun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7367936608066104775
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702245666269524298}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 99.999985, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7339567940022955230}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3096954833122471570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702245666269524298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a0db0f7391c6e47b6b7d883b70340b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RayCastOrigin: {fileID: 3635939352017732296}
-  m_RaycastDestination: {fileID: 0}
-  m_Projectile: {fileID: 4488212945830300154, guid: 7d73465c04032c049a66d6f127612c55,
-    type: 3}
-  m_WeaponRecoil: {fileID: 2586676146152189927}
-  <IsFiring>k__BackingField: 0
---- !u!114 &2586676146152189927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702245666269524298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 999dd4a76e87049808e4d085a0c2d86c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerCamera: {fileID: 0}
-  m_CameraShake: {fileID: 5328779324624138084}
-  m_RecoilPattern:
-  - {x: 0.1, y: 0.001}
-  - {x: -0.09, y: 0.001}
-  - {x: 0.08, y: 0.001}
-  - {x: -0.07, y: 0.001}
-  - {x: 0.06, y: 0.001}
-  - {x: -0.05, y: 0.001}
-  - {x: 0.04, y: 0.001}
-  - {x: -0.03, y: 0.001}
-  - {x: 0.02, y: 0.001}
-  - {x: -0.01, y: 0.001}
-  m_Duration: 0.1
-  m_RigLayerAnimator: {fileID: 8030187440944503772}
---- !u!114 &5328779324624138084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702245666269524298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 2
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 3
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 11400000, guid: 42f032e9ba5a54ec1a325042a915e38c, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &6994406538306784824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1641,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7428429555875773774}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 271a7bbd3199bf545a13a27e7636fbc4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1216419807961137499}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 271a7bbd3199bf545a13a27e7636fbc4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3757735707542520768}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 271a7bbd3199bf545a13a27e7636fbc4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7717112583960853027}
   m_SourcePrefab: {fileID: 100100000, guid: 271a7bbd3199bf545a13a27e7636fbc4, type: 3}
 --- !u!1 &2667324419122963108 stripped
 GameObject:
@@ -1793,6 +1672,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1216419807961137499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667324419122963108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a0db0f7391c6e47b6b7d883b70340b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RayCastOrigin: {fileID: 3635939352017732296}
+  m_RaycastDestination: {fileID: 0}
+  m_Projectile: {fileID: 4488212945830300154, guid: 7d73465c04032c049a66d6f127612c55,
+    type: 3}
+  m_WeaponRecoil: {fileID: 3757735707542520768}
+  <IsFiring>k__BackingField: 0
+--- !u!114 &3757735707542520768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667324419122963108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999dd4a76e87049808e4d085a0c2d86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 0}
+  m_CameraShake: {fileID: 7717112583960853027}
+  m_RecoilPattern:
+  - {x: 0.1, y: 0.001}
+  - {x: -0.09, y: 0.001}
+  - {x: 0.08, y: 0.001}
+  - {x: -0.07, y: 0.001}
+  - {x: 0.06, y: 0.001}
+  - {x: -0.05, y: 0.001}
+  - {x: 0.04, y: 0.001}
+  - {x: -0.03, y: 0.001}
+  - {x: 0.02, y: 0.001}
+  - {x: -0.01, y: 0.001}
+  m_Duration: 0.1
+  m_RigLayerAnimator: {fileID: 8030187440944503772}
+--- !u!114 &7717112583960853027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667324419122963108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 3
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 11400000, guid: 42f032e9ba5a54ec1a325042a915e38c, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!4 &3337147265515845662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 271a7bbd3199bf545a13a27e7636fbc4,
@@ -2158,8 +2135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TurnSpeed: 15
-  m_AimLayerRig: {fileID: 5478741477060499249}
-  m_AimDuration: 0.16
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,
