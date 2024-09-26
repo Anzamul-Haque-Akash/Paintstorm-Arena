@@ -1692,15 +1692,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.76666665
-    functionName: SetPodParentAnimationEvent
-    data: 
+    functionName: OnAnimationEvent
+    data: GrabPodAnimationEvent
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.2
-    functionName: DetachPodAnimationEvent
-    data: 
+  - time: 2.1
+    functionName: OnAnimationEvent
+    data: DetachPodAnimationEvent
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

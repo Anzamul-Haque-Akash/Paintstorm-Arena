@@ -409,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4182534572349886907}
   - component: {fileID: 8030187440944503772}
-  - component: {fileID: 1683659915894858382}
+  - component: {fileID: 6065648942895801484}
   m_Layer: 0
   m_Name: Rig Layers
   m_TagString: Untagged
@@ -458,7 +458,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1683659915894858382
+--- !u!114 &6065648942895801484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -467,12 +467,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1656614583879532340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31f82a58ec37042b195c4e2efe26b290, type: 3}
+  m_Script: {fileID: 11500000, guid: a73dcaf5270c745a6859ec5de804d262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RigLayerAnimator: {fileID: 8030187440944503772}
-  m_BodyPod: {fileID: 5156866719590976112}
-  m_HandPod: {fileID: 4471483912588876778}
 --- !u!1 &1982882520987795009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2051,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6278136725433608165}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 603518665547381179}
   m_SourcePrefab: {fileID: 100100000, guid: f99b5bb02948b204aa616163316d53a8, type: 3}
 --- !u!4 &858143963345129353 stripped
 Transform:
@@ -2294,6 +2295,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TurnSpeed: 15
+--- !u!114 &603518665547381179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231994007795615284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f82a58ec37042b195c4e2efe26b290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RigLayerAnimator: {fileID: 8030187440944503772}
+  m_BodyPod: {fileID: 5156866719590976112}
+  m_HandPod: {fileID: 4471483912588876778}
+  m_WeaponAnimationEvents: {fileID: 6065648942895801484}
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,
