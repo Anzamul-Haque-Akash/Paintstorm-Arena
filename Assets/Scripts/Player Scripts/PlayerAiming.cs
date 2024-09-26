@@ -33,8 +33,9 @@ namespace Player_Scripts
 
         private void Update()
         {
-            if (Input.GetMouseButton(1)) m_AimLayerRig.weight += Time.deltaTime / m_AimDuration;
-            else m_AimLayerRig.weight -= Time.deltaTime / m_AimDuration;
+            // if (Input.GetMouseButton(1)) m_AimLayerRig.weight += Time.deltaTime / m_AimDuration;
+            // else m_AimLayerRig.weight -= Time.deltaTime / m_AimDuration;
+            m_AimLayerRig.weight = 1f;
 
             _isAiming = m_AimLayerRig.weight >= 1; 
 
