@@ -54,7 +54,7 @@ namespace Player_Scripts
 
         private void DetachPodAnimationEvent()
         {
-            m_BodyPod.SetActive(true);
+            //m_BodyPod.SetActive(true);
             m_HandPod.SetActive(false);
         }
     }
