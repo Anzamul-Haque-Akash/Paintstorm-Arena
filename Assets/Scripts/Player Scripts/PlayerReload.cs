@@ -25,6 +25,8 @@ namespace Player_Scripts
 
         private void OnAnimationEvent(string eventName)
         {
+            Debug.Log(eventName);
+            
             switch (eventName)
             {
                 case "GrabPodAnimationEvent":
