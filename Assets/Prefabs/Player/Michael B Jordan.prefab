@@ -1999,6 +1999,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7989463
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5977621
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.028223706
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.05973927
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -72.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -22.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066789390739326310, guid: faac3fe7234894d67ac70e72e62f6cd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 24.909
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
