@@ -10,6 +10,7 @@ namespace Player_Scripts
         [SerializeField] private float m_TurnSpeed;
 
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
+        [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
         [SerializeField] private CinemachineCameraOffset m_CameraOffset;
 
@@ -38,11 +39,11 @@ namespace Player_Scripts
         {
             if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
 
-            if (Input.GetKey(KeyCode.E)) Band(-50, 0.15f, 0.42f);
-            if (Input.GetKey(KeyCode.Q)) Band(0f, 0.08f, 0.25f);
+            if (Input.GetKey(KeyCode.E)) Band(-50, -10f, 0.15f, 0.42f);
+            if (Input.GetKey(KeyCode.Q)) Band(0f, 0f, 0.08f, 0.25f);
         }
 
-        private void Band(float spineOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
+        private void Band(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
             Vector3 newOffset;
             
@@ -51,6 +52,12 @@ namespace Player_Scripts
             newOffset.z = spineOffsetZ;
             aimConstraintData.offset = newOffset;
             m_Spine1MultiAimConstraint.data = aimConstraintData;
+            
+            aimConstraintData = m_HeadMultiAimConstraint.data;
+            newOffset = aimConstraintData.offset;
+            newOffset.z = headOffsetZ;
+            aimConstraintData.offset = newOffset;
+            m_HeadMultiAimConstraint.data = aimConstraintData;
 
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
             newOffset = posConstraintData.offset;

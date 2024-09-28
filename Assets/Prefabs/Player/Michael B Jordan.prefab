@@ -2416,6 +2416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TurnSpeed: 15
   m_Spine1MultiAimConstraint: {fileID: 1697704247910645058}
+  m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}
   m_CameraOffset: {fileID: 0}
 --- !u!114 &603518665547381179
