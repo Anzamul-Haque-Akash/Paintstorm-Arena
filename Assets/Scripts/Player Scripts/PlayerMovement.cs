@@ -8,7 +8,7 @@ namespace Player_Scripts
         [SerializeField] private CharacterController m_CharacterController;
         [SerializeField] private float m_JumpHeight;
         [SerializeField] private float m_Gravity;
-        [SerializeField] private float m_SpetDown;
+        [SerializeField] private float m_StepDown;
         [SerializeField] private float m_AirControl;
         [SerializeField] private float m_JumpDamp;
         [SerializeField] private float m_GroundSpeed;
@@ -45,7 +45,7 @@ namespace Player_Scripts
         private void UpdateOnGround()
         {
             Vector3 stepForwardAmount = _rootMotion * m_GroundSpeed;
-            Vector3 stepDownAmunt = Vector3.down * m_SpetDown;
+            Vector3 stepDownAmunt = Vector3.down * m_StepDown;
             
             m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
             _rootMotion = Vector3.zero;
@@ -57,14 +57,14 @@ namespace Player_Scripts
         {
             _velocity.y -= m_Gravity * Time.fixedDeltaTime;
             Vector3 displacement = _velocity * Time.fixedDeltaTime;
-            displacement += CalculateAirControle();
+            displacement += CalculateAirControlle();
             m_CharacterController.Move(displacement);
             _isJumping = !m_CharacterController.isGrounded;
             _rootMotion = Vector3.zero;
             m_Animator.SetBool(IsJumping, _isJumping);
         }
 
-        private Vector3 CalculateAirControle()
+        private Vector3 CalculateAirControlle()
         {
             return ((transform.forward * _input.y) + (transform.right * _input.x)) * (m_AirControl / 100);
         } 

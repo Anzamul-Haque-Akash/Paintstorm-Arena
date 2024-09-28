@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_CharacterController: {fileID: 1070253940184469616}
   m_JumpHeight: 1.5
   m_Gravity: 20
-  m_SpetDown: 0.02
+  m_StepDown: 0.02
   m_AirControl: 2.5
   m_JumpDamp: 0.3
   m_GroundSpeed: 1
