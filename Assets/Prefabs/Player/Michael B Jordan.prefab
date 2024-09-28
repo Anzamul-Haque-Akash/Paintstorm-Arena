@@ -2400,6 +2400,7 @@ MonoBehaviour:
   m_Gravity: 20
   m_SpetDown: 0.02
   m_AirControl: 2.5
+  m_JumpDamp: 0.3
 --- !u!114 &6278136725433608165
 MonoBehaviour:
   m_ObjectHideFlags: 0
