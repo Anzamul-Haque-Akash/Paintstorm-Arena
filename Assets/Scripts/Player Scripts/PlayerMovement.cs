@@ -20,6 +20,7 @@ namespace Player_Scripts
         
         private static readonly int InputX = Animator.StringToHash("InputX");
         private static readonly int InputY = Animator.StringToHash("InputY");
+        private static readonly int IsJumping = Animator.StringToHash("isJumping");
 
         private void Update()
         {
@@ -60,6 +61,7 @@ namespace Player_Scripts
             m_CharacterController.Move(displacement);
             _isJumping = !m_CharacterController.isGrounded;
             _rootMotion = Vector3.zero;
+            m_Animator.SetBool(IsJumping, _isJumping);
         }
 
         private Vector3 CalculateAirControle()
@@ -81,6 +83,7 @@ namespace Player_Scripts
             _isJumping = true;
             _velocity = m_Animator.velocity * (m_JumpDamp * m_GroundSpeed);
             _velocity.y = jumpVelocity;
+            m_Animator.SetBool(IsJumping, true);
         }
     }
 }
