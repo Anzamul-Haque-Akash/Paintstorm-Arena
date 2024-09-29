@@ -49,8 +49,9 @@ namespace Player_Scripts
         {
             if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
 
-            if (Input.GetKey(KeyCode.E)) Band(-50, -10f, 0.15f, 0.42f);
-            if (Input.GetKey(KeyCode.Q)) Band(0f, 0f, 0.08f, 0.25f);
+            if (Input.GetKey(KeyCode.E)) Band(-60, -15f, 0.2f, 0.45f);
+            else if (Input.GetKey(KeyCode.Q)) Band(50f, 5f, -0.05f, -0.35f);
+            else Band(0f, 0f, 0.08f, 0.25f);
         }
         
         private void Band(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
