@@ -1984,11 +1984,6 @@ PrefabInstance:
       objectReference: {fileID: 183004437}
     - target: {fileID: 6278136725433608165, guid: a2c96725de8bc7d49b11147add8e0270,
         type: 3}
-      propertyPath: m_CameraOffset
-      value: 
-      objectReference: {fileID: 72993716}
-    - target: {fileID: 6278136725433608165, guid: a2c96725de8bc7d49b11147add8e0270,
-        type: 3}
       propertyPath: m_CinemachineCameraOffset
       value: 
       objectReference: {fileID: 72993716}

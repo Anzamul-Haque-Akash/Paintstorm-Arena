@@ -2401,7 +2401,9 @@ MonoBehaviour:
   m_StepDown: 0.02
   m_AirControl: 2.5
   m_JumpDamp: 0.3
+  m_MaxJumpDamp: 0.5
   m_GroundSpeed: 1
+  m_GroundMaxSpeed: 1.5
 --- !u!114 &6278136725433608165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2418,7 +2420,7 @@ MonoBehaviour:
   m_Spine1MultiAimConstraint: {fileID: 1697704247910645058}
   m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}
-  m_CameraOffset: {fileID: 0}
+  m_CinemachineCameraOffset: {fileID: 0}
   m_SpineOffsetZ: {x: 50, y: 0, z: -60}
   m_HeadOffsetZ: {x: 5, y: 0, z: -15}
   m_WeaponPosOffsetX: {x: -0.05, y: 0.08, z: 0.2}

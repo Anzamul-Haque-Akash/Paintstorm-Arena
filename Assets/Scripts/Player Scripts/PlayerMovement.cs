@@ -11,16 +11,26 @@ namespace Player_Scripts
         [SerializeField] private float m_StepDown;
         [SerializeField] private float m_AirControl;
         [SerializeField] private float m_JumpDamp;
+        [SerializeField] private float m_MaxJumpDamp;
         [SerializeField] private float m_GroundSpeed;
+        [SerializeField] private float m_GroundMaxSpeed;
         
         private Vector2 _input;
         private Vector3 _rootMotion;
+        private float _groundSpeed;
+        private float _jumpDamp;
         private Vector3 _velocity;
         private bool _isJumping;
         
         private static readonly int InputX = Animator.StringToHash("InputX");
         private static readonly int InputY = Animator.StringToHash("InputY");
         private static readonly int IsJumping = Animator.StringToHash("isJumping");
+
+        private void Start()
+        {
+            _groundSpeed = m_GroundSpeed;
+            _jumpDamp = m_JumpDamp;
+        }
 
         private void Update()
         {
@@ -31,6 +41,17 @@ namespace Player_Scripts
             m_Animator.SetFloat(InputY, _input.y, 0.1f, Time.deltaTime);
             
             if(Input.GetKeyDown(KeyCode.Space)) Jump();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _groundSpeed = m_GroundMaxSpeed;
+                _jumpDamp = m_MaxJumpDamp;
+            }
+            else
+            {
+                _groundSpeed = m_GroundSpeed;
+                _jumpDamp = m_JumpDamp;
+            }
         }
         private void OnAnimatorMove()
         {
@@ -44,7 +65,7 @@ namespace Player_Scripts
 
         private void UpdateOnGround()
         {
-            Vector3 stepForwardAmount = _rootMotion * m_GroundSpeed;
+            Vector3 stepForwardAmount = _rootMotion * _groundSpeed;
             Vector3 stepDownAmunt = Vector3.down * m_StepDown;
             
             m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
@@ -81,7 +102,7 @@ namespace Player_Scripts
         private void SetInAir(float jumpVelocity)
         {
             _isJumping = true;
-            _velocity = m_Animator.velocity * (m_JumpDamp * m_GroundSpeed);
+            _velocity = m_Animator.velocity * (_jumpDamp * _groundSpeed);
             _velocity.y = jumpVelocity;
             m_Animator.SetBool(IsJumping, true);
         }
