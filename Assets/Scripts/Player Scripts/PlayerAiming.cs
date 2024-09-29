@@ -11,7 +11,13 @@ namespace Player_Scripts
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
-        [SerializeField] private CinemachineCameraOffset m_CameraOffset;
+        [SerializeField] private CinemachineCameraOffset m_CinemachineCameraOffset;
+        
+        [SerializeField] private Vector3 m_SpineOffsetZ;
+        [SerializeField] private Vector3 m_HeadOffsetZ;
+        [SerializeField] private Vector3 m_WeaponPosOffsetX;
+        [SerializeField] private Vector3 m_CameraOffsetX;
+        
         [SerializeField] private float m_SmoothSpeed;
 
         private Camera _mainCamera;
@@ -35,7 +41,7 @@ namespace Player_Scripts
             _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
-            _cameraOffset = m_CameraOffset.m_Offset.x;
+            _cameraOffset = m_CinemachineCameraOffset.m_Offset.x;
         }
 
         private void FixedUpdate()
@@ -49,9 +55,9 @@ namespace Player_Scripts
         {
             if (Input.GetMouseButtonDown(0)) _raycastWeapon.StartFiring();
 
-            if (Input.GetKey(KeyCode.E)) Band(-60, -15f, 0.2f, 0.45f);
-            else if (Input.GetKey(KeyCode.Q)) Band(50f, 5f, -0.05f, -0.35f);
-            else Band(0f, 0f, 0.08f, 0.25f);
+            if (Input.GetKey(KeyCode.E)) Band(m_SpineOffsetZ.z, m_HeadOffsetZ.z, m_WeaponPosOffsetX.z, m_CameraOffsetX.z);
+            else if (Input.GetKey(KeyCode.Q)) Band(m_SpineOffsetZ.x, m_HeadOffsetZ.x, m_WeaponPosOffsetX.x, m_CameraOffsetX.x);
+            else Band(m_SpineOffsetZ.y, m_HeadOffsetZ.y, m_WeaponPosOffsetX.y, m_CameraOffsetX.y);
         }
         
         private void Band(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
@@ -80,7 +86,7 @@ namespace Player_Scripts
             m_WeaponMultiPositionConstraint.data = posConstraintData;
             
             _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * m_SmoothSpeed);
-            m_CameraOffset.m_Offset.x = _cameraOffset;
+            m_CinemachineCameraOffset.m_Offset.x = _cameraOffset;
         }
     }
 }
