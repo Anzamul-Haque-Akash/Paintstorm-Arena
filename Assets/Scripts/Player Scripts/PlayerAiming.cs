@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Weapon_Scripts;
@@ -13,10 +12,16 @@ namespace Player_Scripts
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
         [SerializeField] private CinemachineCameraOffset m_CameraOffset;
+        [SerializeField] private float m_SmoothSpeed;
 
         private Camera _mainCamera;
         private RaycastWeapon _raycastWeapon;
         private bool _isAiming;
+        
+        private float _spineOffset;
+        private float _headOffset;
+        private float _weaponOffset;
+        private float _cameraOffset;
 
         private void Start()
         {
@@ -26,6 +31,11 @@ namespace Player_Scripts
             Cursor.lockState = CursorLockMode.Locked;
 
             _raycastWeapon = GetComponentInChildren<RaycastWeapon>();
+            
+            _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
+            _headOffset = m_HeadMultiAimConstraint.data.offset.z;
+            _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
+            _cameraOffset = m_CameraOffset.m_Offset.x;
         }
 
         private void FixedUpdate()
@@ -42,30 +52,34 @@ namespace Player_Scripts
             if (Input.GetKey(KeyCode.E)) Band(-50, -10f, 0.15f, 0.42f);
             if (Input.GetKey(KeyCode.Q)) Band(0f, 0f, 0.08f, 0.25f);
         }
-
+        
         private void Band(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
             Vector3 newOffset;
             
-            MultiAimConstraintData aimConstraintData = m_Spine1MultiAimConstraint.data;
-            newOffset = aimConstraintData.offset;
-            newOffset.z = spineOffsetZ;
-            aimConstraintData.offset = newOffset;
-            m_Spine1MultiAimConstraint.data = aimConstraintData;
+            MultiAimConstraintData constraintData = m_Spine1MultiAimConstraint.data;
+            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * m_SmoothSpeed);
+            newOffset = constraintData.offset;
+            newOffset.z = _spineOffset;
+            constraintData.offset = newOffset;
+            m_Spine1MultiAimConstraint.data = constraintData;
             
-            aimConstraintData = m_HeadMultiAimConstraint.data;
-            newOffset = aimConstraintData.offset;
-            newOffset.z = headOffsetZ;
-            aimConstraintData.offset = newOffset;
-            m_HeadMultiAimConstraint.data = aimConstraintData;
-
+            constraintData = m_HeadMultiAimConstraint.data;
+            _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * m_SmoothSpeed);
+            newOffset = constraintData.offset;
+            newOffset.z = _headOffset;
+            constraintData.offset = newOffset;
+            m_HeadMultiAimConstraint.data = constraintData;
+            
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
+            _weaponOffset = Mathf.Lerp(_weaponOffset, weaponPosOffsetX, Time.deltaTime * m_SmoothSpeed);
             newOffset = posConstraintData.offset;
-            newOffset.x = weaponPosOffsetX;
+            newOffset.x = _weaponOffset;
             posConstraintData.offset = newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
-
-            m_CameraOffset.m_Offset.x = cameraOffsetX;
+            
+            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * m_SmoothSpeed);
+            m_CameraOffset.m_Offset.x = _cameraOffset;
         }
     }
 }
