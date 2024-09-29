@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -14,6 +15,7 @@ namespace Player_Scripts
         [SerializeField] private float m_MaxJumpDamp;
         [SerializeField] private float m_GroundSpeed;
         [SerializeField] private float m_GroundMaxSpeed;
+        [SerializeField] private float m_CrouchSpeed;
         
         private Vector2 _input;
         private Vector3 _rootMotion;
@@ -21,6 +23,8 @@ namespace Player_Scripts
         private float _jumpDamp;
         private Vector3 _velocity;
         private bool _isJumping;
+        private bool _isCrouching;
+        private float _animatorWeight;
         
         private static readonly int InputX = Animator.StringToHash("InputX");
         private static readonly int InputY = Animator.StringToHash("InputY");
@@ -52,6 +56,13 @@ namespace Player_Scripts
                 _groundSpeed = m_GroundSpeed;
                 _jumpDamp = m_JumpDamp;
             }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _isCrouching = !_isCrouching;
+            }
+
+            SetAnimationLayerWeight();
         }
         private void OnAnimatorMove()
         {
@@ -105,6 +116,12 @@ namespace Player_Scripts
             _velocity = m_Animator.velocity * (_jumpDamp * _groundSpeed);
             _velocity.y = jumpVelocity;
             m_Animator.SetBool(IsJumping, true);
+        }
+
+        private void SetAnimationLayerWeight()
+        {
+            _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * m_CrouchSpeed);
+            m_Animator.SetLayerWeight(1,_animatorWeight);
         }
     }
 }
