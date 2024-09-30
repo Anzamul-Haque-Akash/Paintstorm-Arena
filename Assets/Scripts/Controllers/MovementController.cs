@@ -79,14 +79,14 @@ namespace Controllers
         {
             _velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
             Vector3 displacement = _velocity * Time.fixedDeltaTime;
-            displacement += CalculateAirControlle();
+            displacement += CalculateAirController();
             m_CharacterController.Move(displacement);
             _isJumping = !m_CharacterController.isGrounded;
             _rootMotion = Vector3.zero;
             m_Animator.SetBool(AnimatorHashes.IsJumping, _isJumping);
         }
 
-        private Vector3 CalculateAirControlle()
+        private Vector3 CalculateAirController()
         {
             return ((transform.forward * _input.y) + (transform.right * _input.x)) *
                    (Player.Instance.PlayerData.m_AirControl / 100);
