@@ -1,8 +1,9 @@
+using Player_Scripts;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Weapon_Scripts;
 
-namespace Player_Scripts
+namespace Controllers
 {
     public class AimingController : MonoBehaviour
     {

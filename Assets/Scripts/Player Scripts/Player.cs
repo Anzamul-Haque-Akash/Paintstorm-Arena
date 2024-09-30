@@ -1,4 +1,4 @@
-using Player_Scripts.SO;
+using SOs;
 using UnityEngine;
 
 namespace Player_Scripts

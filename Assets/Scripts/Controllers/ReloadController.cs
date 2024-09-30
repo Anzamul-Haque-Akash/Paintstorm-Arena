@@ -1,7 +1,7 @@
 using Helper_Scripts;
 using UnityEngine;
 
-namespace Player_Scripts
+namespace Controllers
 {
     public class ReloadController : MonoBehaviour
     {

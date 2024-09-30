@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player_Scripts
+namespace Controllers
 {
     public class InputController : MonoBehaviour
     {

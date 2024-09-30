@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Player_Scripts.SO
+namespace SOs
 {
     [CreateAssetMenu(fileName = "PlayerData", menuName = "Data/PlayerData")]
     public class PlayerDataSo : ScriptableObject
