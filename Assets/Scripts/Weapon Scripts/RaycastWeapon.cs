@@ -7,6 +7,7 @@ namespace Weapon_Scripts
         [SerializeField] private Transform m_RayCastOrigin;
         [SerializeField] private Transform m_RaycastDestination;
         [SerializeField] private GameObject m_Projectile;
+        [SerializeField] private Transform m_ProjectileOrigin;
         [SerializeField] private WeaponRecoil m_WeaponRecoil;
 
         [field: SerializeField] public bool IsFiring { get; private set; }
@@ -28,7 +29,7 @@ namespace Weapon_Scripts
 
             Quaternion targetRotation = Quaternion.LookRotation(_direction);
 
-            Instantiate(m_Projectile, _ray.origin, targetRotation);
+            Instantiate(m_Projectile, m_ProjectileOrigin.position, targetRotation);
 
             if (Physics.Raycast(_ray, out _hitInfo))
             {

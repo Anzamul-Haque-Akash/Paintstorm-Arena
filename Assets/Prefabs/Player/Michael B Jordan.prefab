@@ -201,6 +201,37 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!1 &593752114511596557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3285653837263797246}
+  m_Layer: 0
+  m_Name: Projectile Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3285653837263797246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593752114511596557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.592, z: 0.003}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6906415387306576853}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &659171840479817578
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +881,7 @@ Transform:
   m_Children:
   - {fileID: 5841417591743116877}
   - {fileID: 3635939352017732296}
+  - {fileID: 3285653837263797246}
   m_Father: {fileID: 4182534572349886907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3188916771495658006
@@ -1237,7 +1269,7 @@ Transform:
   m_GameObject: {fileID: 4515078600452670407}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.6127, z: 0.003}
+  m_LocalPosition: {x: 0, y: -0.005, z: 0.003}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1823,6 +1855,7 @@ MonoBehaviour:
   m_RaycastDestination: {fileID: 0}
   m_Projectile: {fileID: 4488212945830300154, guid: 7d73465c04032c049a66d6f127612c55,
     type: 3}
+  m_ProjectileOrigin: {fileID: 3285653837263797246}
   m_WeaponRecoil: {fileID: 3757735707542520768}
   <IsFiring>k__BackingField: 0
 --- !u!114 &3757735707542520768
@@ -2407,16 +2440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eae2bec31bc62d4a8c8f1687e4c543e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TurnSpeed: 15
   m_Spine1MultiAimConstraint: {fileID: 1697704247910645058}
   m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}
   m_CinemachineCameraOffset: {fileID: 0}
-  m_SpineOffsetZ: {x: 50, y: 0, z: -60}
-  m_HeadOffsetZ: {x: 5, y: 0, z: -15}
-  m_WeaponPosOffsetX: {x: -0.05, y: 0.08, z: 0.2}
-  m_CameraOffsetX: {x: -0.35, y: 0.25, z: 0.45}
-  m_SmoothSpeed: 8
 --- !u!114 &603518665547381179
 MonoBehaviour:
   m_ObjectHideFlags: 0
