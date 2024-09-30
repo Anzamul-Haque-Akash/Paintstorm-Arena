@@ -1,3 +1,4 @@
+using Constants;
 using Helper_Scripts;
 using UnityEngine;
 
@@ -9,9 +10,7 @@ namespace Controllers
         [SerializeField] private GameObject m_BodyPod;
         [SerializeField] private GameObject m_HandPod;
         [SerializeField] private WeaponAnimationEvents m_WeaponAnimationEvents;
-
-        private static readonly int IsReloading = Animator.StringToHash("isReloading");
-
+        
         private void Awake()
         {
             m_HandPod.SetActive(false);
@@ -42,7 +41,7 @@ namespace Controllers
 
         private void Reload()
         {
-            m_RigLayerAnimator.SetTrigger(IsReloading);
+            m_RigLayerAnimator.SetTrigger(AnimatorHashes.IsReloading);
         }
 
         private void GrabPodAnimationEvent()

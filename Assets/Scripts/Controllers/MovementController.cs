@@ -1,3 +1,4 @@
+using Constants;
 using Player_Scripts;
 using UnityEngine;
 
@@ -17,10 +18,6 @@ namespace Controllers
         private bool _isCrouching;
         private float _animatorWeight;
 
-        private static readonly int InputX = Animator.StringToHash("InputX");
-        private static readonly int InputY = Animator.StringToHash("InputY");
-        private static readonly int IsJumping = Animator.StringToHash("isJumping");
-
         private void Start()
         {
             _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
@@ -32,8 +29,8 @@ namespace Controllers
             _input.x = Input.GetAxis("Horizontal");
             _input.y = Input.GetAxis("Vertical");
 
-            m_Animator.SetFloat(InputX, _input.x, 0.1f, Time.deltaTime);
-            m_Animator.SetFloat(InputY, _input.y, 0.1f, Time.deltaTime);
+            m_Animator.SetFloat(AnimatorHashes.InputX, _input.x, 0.1f, Time.deltaTime);
+            m_Animator.SetFloat(AnimatorHashes.InputY, _input.y, 0.1f, Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
@@ -86,7 +83,7 @@ namespace Controllers
             m_CharacterController.Move(displacement);
             _isJumping = !m_CharacterController.isGrounded;
             _rootMotion = Vector3.zero;
-            m_Animator.SetBool(IsJumping, _isJumping);
+            m_Animator.SetBool(AnimatorHashes.IsJumping, _isJumping);
         }
 
         private Vector3 CalculateAirControlle()
@@ -110,7 +107,7 @@ namespace Controllers
             _isJumping = true;
             _velocity = m_Animator.velocity * (_jumpDamp * _groundSpeed);
             _velocity.y = jumpVelocity;
-            m_Animator.SetBool(IsJumping, true);
+            m_Animator.SetBool(AnimatorHashes.IsJumping, true);
         }
 
         private void SetAnimationLayerWeight()

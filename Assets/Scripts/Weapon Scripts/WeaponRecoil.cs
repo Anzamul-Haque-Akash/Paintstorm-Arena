@@ -1,3 +1,4 @@
+using Constants;
 using UnityEngine;
 
 namespace Weapon_Scripts
@@ -16,8 +17,6 @@ namespace Weapon_Scripts
         private float _time;
         private Camera _camera;
         
-        private static readonly int IsShooting = Animator.StringToHash("isShooting");
-
         private void Start()
         {
             _camera = Camera.main;
@@ -35,7 +34,7 @@ namespace Weapon_Scripts
             _index = Random.Range(0, m_RecoilPattern.Length);
             _verticalRecoil = m_RecoilPattern[_index].y;
             
-            m_RigLayerAnimator.SetTrigger(IsShooting);
+            m_RigLayerAnimator.SetTrigger(AnimatorHashes.IsShooting);
             
         }
         
