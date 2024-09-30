@@ -9,6 +9,6 @@ namespace Player_Scripts
 
         [field: SerializeField] public PlayerDataSo PlayerData { get; private set; }
 
-        private void Start() => Instance = this;
+        private void Awake() => Instance = this;
     }
 }

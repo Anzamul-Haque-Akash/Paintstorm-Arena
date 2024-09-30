@@ -6,7 +6,7 @@ namespace Player_Scripts
     {
         [SerializeField] private Animator m_Animator;
         [SerializeField] private CharacterController m_CharacterController;
-        
+
         private Vector2 _input;
         private Vector3 _rootMotion;
         private float _groundSpeed;
@@ -15,7 +15,7 @@ namespace Player_Scripts
         private bool _isJumping;
         private bool _isCrouching;
         private float _animatorWeight;
-        
+
         private static readonly int InputX = Animator.StringToHash("InputX");
         private static readonly int InputY = Animator.StringToHash("InputY");
         private static readonly int IsJumping = Animator.StringToHash("isJumping");
@@ -30,11 +30,11 @@ namespace Player_Scripts
         {
             _input.x = Input.GetAxis("Horizontal");
             _input.y = Input.GetAxis("Vertical");
-            
+
             m_Animator.SetFloat(InputX, _input.x, 0.1f, Time.deltaTime);
             m_Animator.SetFloat(InputY, _input.y, 0.1f, Time.deltaTime);
-            
-            if(Input.GetKeyDown(KeyCode.Space)) Jump();
+
+            if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -54,10 +54,12 @@ namespace Player_Scripts
 
             SetAnimationLayerWeight();
         }
+
         private void OnAnimatorMove()
         {
             _rootMotion += m_Animator.deltaPosition;
         }
+
         private void FixedUpdate()
         {
             if (_isJumping) UpdateInAir();
@@ -68,7 +70,7 @@ namespace Player_Scripts
         {
             Vector3 stepForwardAmount = _rootMotion * _groundSpeed;
             Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
-            
+
             m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
             _rootMotion = Vector3.zero;
 
@@ -88,14 +90,16 @@ namespace Player_Scripts
 
         private Vector3 CalculateAirControlle()
         {
-            return ((transform.forward * _input.y) + (transform.right * _input.x)) * (Player.Instance.PlayerData.m_AirControl / 100);
-        } 
+            return ((transform.forward * _input.y) + (transform.right * _input.x)) *
+                   (Player.Instance.PlayerData.m_AirControl / 100);
+        }
 
         private void Jump()
         {
             if (!_isJumping)
             {
-                float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * Player.Instance.PlayerData.m_JumpHeight);
+                float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity *
+                                                Player.Instance.PlayerData.m_JumpHeight);
                 SetInAir(jumpVelocity);
             }
         }
@@ -110,8 +114,9 @@ namespace Player_Scripts
 
         private void SetAnimationLayerWeight()
         {
-            _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
-            m_Animator.SetLayerWeight(1,_animatorWeight);
+            _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0,
+                Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
+            m_Animator.SetLayerWeight(1, _animatorWeight);
         }
     }
 }

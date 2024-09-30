@@ -8,15 +8,15 @@ namespace Weapon_Scripts
         [SerializeField] private Transform m_RaycastDestination;
         [SerializeField] private GameObject m_Projectile;
         [SerializeField] private WeaponRecoil m_WeaponRecoil;
-        
-        [field:SerializeField] public bool IsFiring { get; private set;}
+
+        [field: SerializeField] public bool IsFiring { get; private set; }
 
         private Ray _ray;
         private RaycastHit _hitInfo;
         private Vector3 _direction;
 
         private void Start() => IsFiring = false;
-        
+
         public void StartFiring()
         {
             IsFiring = true;
@@ -34,7 +34,7 @@ namespace Weapon_Scripts
             {
                 Debug.DrawLine(_ray.origin, _hitInfo.point, Color.red, 1f);
             }
-            
+
             m_WeaponRecoil.GenerateRecoil();
         }
 

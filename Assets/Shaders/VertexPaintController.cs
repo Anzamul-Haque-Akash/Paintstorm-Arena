@@ -38,7 +38,7 @@ namespace Shaders
 
             int pixelXOffset = pixelX - (hitTexture.width / 2);
             int pixelYOffset = pixelY - (hitTexture.height / 2);
-            
+
             for (int x = 0; x < hitTexture.width; x++)
             {
                 for (int y = 0; y < hitTexture.height; y++)
