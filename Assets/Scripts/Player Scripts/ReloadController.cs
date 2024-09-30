@@ -1,10 +1,9 @@
-using System;
 using Helper_Scripts;
 using UnityEngine;
 
 namespace Player_Scripts
 {
-    public class PlayerReload : MonoBehaviour
+    public class ReloadController : MonoBehaviour
     {
         [SerializeField] private Animator m_RigLayerAnimator;
         [SerializeField] private GameObject m_BodyPod;

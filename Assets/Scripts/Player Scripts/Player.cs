@@ -1,3 +1,4 @@
+using Player_Scripts.SO;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -5,10 +6,8 @@ namespace Player_Scripts
     public class Player : MonoBehaviour
     {
         public static Player Instance;
-        
-        [SerializeField] private PlayerInput m_PlayerInput;
-        [SerializeField] private PlayerMovement m_PlayerMovement;
-        [SerializeField] private PlayerAiming m_PlayerAiming;
+
+        [field: SerializeField] public PlayerDataSo PlayerData { get; private set; }
 
         private void Start() => Instance = this;
     }

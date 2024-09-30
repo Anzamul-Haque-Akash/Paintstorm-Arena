@@ -4,7 +4,7 @@ using Weapon_Scripts;
 
 namespace Player_Scripts
 {
-    public class PlayerAiming : MonoBehaviour
+    public class AimingController : MonoBehaviour
     {
         [SerializeField] private float m_TurnSpeed;
 

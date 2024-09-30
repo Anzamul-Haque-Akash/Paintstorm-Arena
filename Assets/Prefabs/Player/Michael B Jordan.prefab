@@ -2367,9 +2367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140a8b958911d40a8807271a7e43e5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerInput: {fileID: 8449628060009473786}
-  m_PlayerMovement: {fileID: 3185196308131237572}
-  m_PlayerAiming: {fileID: 6278136725433608165}
+  <PlayerData>k__BackingField: {fileID: 11400000, guid: 0369e5c161e3f44a0b3a76e39798c4a5,
+    type: 2}
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2396,15 +2395,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 1526784786007115508}
   m_CharacterController: {fileID: 1070253940184469616}
-  m_JumpHeight: 1.5
-  m_Gravity: 20
-  m_StepDown: 0.02
-  m_AirControl: 2.5
-  m_JumpDamp: 0.3
-  m_MaxJumpDamp: 0.5
-  m_GroundSpeed: 1
-  m_GroundMaxSpeed: 1.5
-  m_CrouchSpeed: 10
 --- !u!114 &6278136725433608165
 MonoBehaviour:
   m_ObjectHideFlags: 0

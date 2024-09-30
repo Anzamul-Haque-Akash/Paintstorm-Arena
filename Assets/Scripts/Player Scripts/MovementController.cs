@@ -1,21 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player_Scripts
 {
-    public class PlayerMovement : MonoBehaviour
+    public class MovementController : MonoBehaviour
     {
         [SerializeField] private Animator m_Animator;
         [SerializeField] private CharacterController m_CharacterController;
-        [SerializeField] private float m_JumpHeight;
-        [SerializeField] private float m_Gravity;
-        [SerializeField] private float m_StepDown;
-        [SerializeField] private float m_AirControl;
-        [SerializeField] private float m_JumpDamp;
-        [SerializeField] private float m_MaxJumpDamp;
-        [SerializeField] private float m_GroundSpeed;
-        [SerializeField] private float m_GroundMaxSpeed;
-        [SerializeField] private float m_CrouchSpeed;
         
         private Vector2 _input;
         private Vector3 _rootMotion;
@@ -32,8 +22,8 @@ namespace Player_Scripts
 
         private void Start()
         {
-            _groundSpeed = m_GroundSpeed;
-            _jumpDamp = m_JumpDamp;
+            _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
+            _jumpDamp = Player.Instance.PlayerData.m_JumpDamp;
         }
 
         private void Update()
@@ -48,13 +38,13 @@ namespace Player_Scripts
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                _groundSpeed = m_GroundMaxSpeed;
-                _jumpDamp = m_MaxJumpDamp;
+                _groundSpeed = Player.Instance.PlayerData.m_GroundMaxSpeed;
+                _jumpDamp = Player.Instance.PlayerData.m_MaxJumpDamp;
             }
             else
             {
-                _groundSpeed = m_GroundSpeed;
-                _jumpDamp = m_JumpDamp;
+                _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
+                _jumpDamp = Player.Instance.PlayerData.m_JumpDamp;
             }
 
             if (Input.GetKeyDown(KeyCode.C))
@@ -77,7 +67,7 @@ namespace Player_Scripts
         private void UpdateOnGround()
         {
             Vector3 stepForwardAmount = _rootMotion * _groundSpeed;
-            Vector3 stepDownAmunt = Vector3.down * m_StepDown;
+            Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
             
             m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
             _rootMotion = Vector3.zero;
@@ -87,7 +77,7 @@ namespace Player_Scripts
 
         private void UpdateInAir()
         {
-            _velocity.y -= m_Gravity * Time.fixedDeltaTime;
+            _velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
             Vector3 displacement = _velocity * Time.fixedDeltaTime;
             displacement += CalculateAirControlle();
             m_CharacterController.Move(displacement);
@@ -98,14 +88,14 @@ namespace Player_Scripts
 
         private Vector3 CalculateAirControlle()
         {
-            return ((transform.forward * _input.y) + (transform.right * _input.x)) * (m_AirControl / 100);
+            return ((transform.forward * _input.y) + (transform.right * _input.x)) * (Player.Instance.PlayerData.m_AirControl / 100);
         } 
 
         private void Jump()
         {
             if (!_isJumping)
             {
-                float jumpVelocity = Mathf.Sqrt(2f * m_Gravity * m_JumpHeight);
+                float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * Player.Instance.PlayerData.m_JumpHeight);
                 SetInAir(jumpVelocity);
             }
         }
@@ -120,7 +110,7 @@ namespace Player_Scripts
 
         private void SetAnimationLayerWeight()
         {
-            _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * m_CrouchSpeed);
+            _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             m_Animator.SetLayerWeight(1,_animatorWeight);
         }
     }
