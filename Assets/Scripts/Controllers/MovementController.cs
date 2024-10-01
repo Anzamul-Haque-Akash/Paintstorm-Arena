@@ -44,7 +44,9 @@ namespace Controllers
 
         private void FixedUpdate()
         {
-            UpdateOnGround();
+            if (m_CharacterController.isGrounded) UpdateOnGround();
+           
+            HandleGravity();
         }
 
         private void UpdateOnGround()
@@ -55,6 +57,12 @@ namespace Controllers
             _rootMotion = Vector3.zero;
         }
 
+        private void HandleGravity()
+        {
+            Vector3 stepDownAmount = Vector3.down * Player.Instance.PlayerData.m_StepDown;
+            m_CharacterController.Move(stepDownAmount);
+        }
+        
         private void SetAnimationLayerWeight()
         {
             _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
