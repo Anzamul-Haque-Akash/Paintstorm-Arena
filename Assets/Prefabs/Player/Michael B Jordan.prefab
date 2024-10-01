@@ -2476,6 +2476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b09f8ff94ec4440d8e5d02d16237c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 1526784786007115508}
+  m_CharacterController: {fileID: 1070253940184469616}
+  m_MovementController: {fileID: 3185196308131237572}
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,

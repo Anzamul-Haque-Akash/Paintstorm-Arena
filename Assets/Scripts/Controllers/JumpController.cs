@@ -15,10 +15,7 @@ namespace Controllers
         private bool _isJumping;
         private Vector3 _velocity;
         
-        private void Start()
-        {
-            _jumpDamp = Player.Instance.PlayerData.m_JumpDamp;
-        }
+        private void Start() => _jumpDamp = Player.Instance.PlayerData.m_JumpDamp;
         
         private void Update()
         {
@@ -26,6 +23,8 @@ namespace Controllers
             _input.y = Input.GetAxis("Vertical");
 
             if (Input.GetKeyDown(KeyCode.Space)) Jump();
+            
+            _jumpDamp = Input.GetKey(KeyCode.LeftShift) ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
             
             m_MovementController.enabled = !_isJumping;
         }
@@ -57,7 +56,9 @@ namespace Controllers
             Vector3 displacement = _velocity * Time.fixedDeltaTime;
             displacement += CalculateAirController();
             m_CharacterController.Move(displacement);
+            
             _isJumping = !m_CharacterController.isGrounded;
+            
             m_Animator.SetBool(AnimatorHashes.IsJumping, _isJumping);
         }
         
@@ -72,12 +73,6 @@ namespace Controllers
         private Vector3 CalculateAirController()
         {
             return ((transform.forward * _input.y) + (transform.right * _input.x)) * (Player.Instance.PlayerData.m_AirControl / 100);
-        }
-
-        private void HandelGravity()
-        {
-            Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
-            m_CharacterController.Move(stepDownAmunt);
         }
     }
 }

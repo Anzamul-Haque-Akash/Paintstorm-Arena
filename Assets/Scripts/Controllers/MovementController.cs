@@ -16,11 +16,8 @@ namespace Controllers
         private bool _isCrouching;
         private float _animatorWeight;
 
-        private void Start()
-        {
-            _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
-        }
-
+        private void Start() => _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
+ 
         private void Update()
         {
             _input.x = Input.GetAxis("Horizontal");
@@ -29,33 +26,16 @@ namespace Controllers
             m_Animator.SetFloat(AnimatorHashes.InputX, _input.x, 0.1f, Time.deltaTime);
             m_Animator.SetFloat(AnimatorHashes.InputY, _input.y, 0.1f, Time.deltaTime);
             
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                _groundSpeed = Player.Instance.PlayerData.m_GroundMaxSpeed;
-            }
-            else
-            {
-                _groundSpeed = Player.Instance.PlayerData.m_GroundSpeed;
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                _isCrouching = !_isCrouching;
-            }
-
-            SetAnimationLayerWeight();
+            _groundSpeed = Input.GetKey(KeyCode.LeftShift) ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
+            
+            if (Input.GetKeyDown(KeyCode.C)) _isCrouching = !_isCrouching;
+            SetAnimationCrouchLayerWeight();
         }
 
-        private void OnAnimatorMove()
-        {
-            _rootMotion += m_Animator.deltaPosition;
-        }
+        private void OnAnimatorMove() => _rootMotion += m_Animator.deltaPosition;
 
-        private void FixedUpdate()
-        {
-            UpdateOnGround();
-        }
-
+        private void FixedUpdate() => UpdateOnGround();
+        
         private void UpdateOnGround()
         {
             Vector3 stepForwardAmount = _rootMotion * _groundSpeed;
@@ -65,7 +45,7 @@ namespace Controllers
             _rootMotion = Vector3.zero;
         }
         
-        private void SetAnimationLayerWeight()
+        private void SetAnimationCrouchLayerWeight()
         {
             _animatorWeight = Mathf.Lerp(_animatorWeight, _isCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             m_Animator.SetLayerWeight(1, _animatorWeight);
