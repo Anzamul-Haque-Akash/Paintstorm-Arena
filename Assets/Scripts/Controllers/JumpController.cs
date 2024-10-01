@@ -32,11 +32,6 @@ namespace Controllers
         private void FixedUpdate()
         {
             if (_isJumping) UpdateInAir();
-
-            if (m_CharacterController.isGrounded)
-            {
-                if (!m_CharacterController.isGrounded) SetInAir(0f);
-            }
         }
         
         private void Jump()
@@ -45,8 +40,6 @@ namespace Controllers
             {
                 float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * Player.Instance.PlayerData.m_JumpHeight);
                 SetInAir(jumpVelocity);
-                
-                m_MovementController.enabled = !_isJumping;
             }
         }
         
