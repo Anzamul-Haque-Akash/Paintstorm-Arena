@@ -2406,6 +2406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 0369e5c161e3f44a0b3a76e39798c4a5,
     type: 2}
+  m_PlayerCharacterController: {fileID: 1070253940184469616}
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0

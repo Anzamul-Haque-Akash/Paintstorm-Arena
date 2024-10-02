@@ -7,7 +7,6 @@ namespace Controllers
     public class MovementController : MonoBehaviour
     {
         [SerializeField] private Animator m_Animator;
-        [SerializeField] private CharacterController m_CharacterController;
 
         private Vector2 _input;
         private Vector3 _rootMotion;
@@ -41,7 +40,7 @@ namespace Controllers
             Vector3 stepForwardAmount = _rootMotion * _groundSpeed;
             Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
 
-            m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
+            Player.Instance.m_PlayerCharacterController.Move(stepForwardAmount + stepDownAmunt);
             _rootMotion = Vector3.zero;
         }
         

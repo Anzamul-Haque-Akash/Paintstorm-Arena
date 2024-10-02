@@ -7,7 +7,6 @@ namespace Controllers
     public class JumpController : MonoBehaviour
     {
         [SerializeField] private Animator m_Animator;
-        [SerializeField] private CharacterController m_CharacterController;
         [SerializeField] private MovementController m_MovementController;
         
         private Vector2 _input;
@@ -48,9 +47,9 @@ namespace Controllers
             _velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
             Vector3 displacement = _velocity * Time.fixedDeltaTime;
             displacement += CalculateAirController();
-            m_CharacterController.Move(displacement);
+            Player.Instance.m_PlayerCharacterController.Move(displacement);
             
-            _isJumping = !m_CharacterController.isGrounded;
+            _isJumping = Player.Instance.m_PlayerCharacterController.isGrounded;
             
             m_Animator.SetBool(AnimatorHashes.IsJumping, _isJumping);
         }
