@@ -9,6 +9,7 @@ namespace State_Machine
         private PlayerBaseState _currentState;
         public PlayerIdleState PlayerIdleState = new PlayerIdleState();
         public PlayerMoveState PlayerMoveState = new PlayerMoveState();
+        public PlayerJumpState PlayerJumpState = new PlayerJumpState();
         
         public Animator m_Animator;
         public CharacterController m_CharacterController;
@@ -33,8 +34,9 @@ namespace State_Machine
             GetInput();
             _currentState.UpdateState();
 
-            if (m_Input == Vector2.zero) SwitchState(PlayerIdleState);
-            else SwitchState(PlayerMoveState);
+            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping)  SwitchState(PlayerJumpState);
+            else if (m_Input == Vector2.zero && !m_IsJumping) SwitchState(PlayerIdleState);
+            else if (m_Input != Vector2.zero && !m_IsJumping) SwitchState(PlayerMoveState);
         }
 
         private void FixedUpdate() => _currentState.FixedUpdateState();
@@ -53,17 +55,12 @@ namespace State_Machine
             m_Animator.SetFloat(AnimatorHashes.InputX, m_Input.x, 0.1f, Time.deltaTime);
             m_Animator.SetFloat(AnimatorHashes.InputY, m_Input.y, 0.1f, Time.deltaTime);
 
-            //if (Input.GetKeyDown(KeyCode.Space)) Jump();
-
             SpeedUp(Input.GetKey(KeyCode.LeftShift));
             
             if (Input.GetKeyDown(KeyCode.C)) m_IsCrouching = !m_IsCrouching;
         }
         
-        private void OnAnimatorMove()
-        {
-            m_RootMotion += m_Animator.deltaPosition;
-        }
+        private void OnAnimatorMove() => m_RootMotion += m_Animator.deltaPosition;
 
         private void SpeedUp(bool flag)
         {
