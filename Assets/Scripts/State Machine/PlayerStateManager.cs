@@ -6,66 +6,75 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        private PlayerBaseState _currentState;
-        public PlayerIdleState PlayerIdleState = new PlayerIdleState();
-        public PlayerMoveState PlayerMoveState = new PlayerMoveState();
-        public PlayerJumpState PlayerJumpState = new PlayerJumpState();
+        [field: SerializeField] public PlayerBaseState CurrentState { get; private set; }
         
-        public Animator m_Animator;
-        public CharacterController m_CharacterController;
+        [field: SerializeField] public CharacterController m_CharacterController;
+        [field: SerializeField] public Animator Animator { get; private set; }
+        [field: SerializeField] public float GroundSpeed { get; private set; }
+        [field: SerializeField] public float JumpDamp { get; private set; }
+        [field: SerializeField] public bool IsCrouching { get; private set; }
+        [field: SerializeField] public float AnimatorWeight { get; private set; }
 
-        public Vector2 m_Input;
-        public Vector3 m_RootMotion;
-        public float m_GroundSpeed;
-        public float m_JumpDamp;
+        public Vector2 m_PlayerInput;
         public Vector3 m_Velocity;
+        public Vector3 m_RootMotion;
         public bool m_IsJumping;
-        public bool m_IsCrouching;
-        public float m_AnimatorWeight;
+        
+        private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
+        private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
+        private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
 
         private void Start()
         {
-            _currentState = PlayerIdleState;
-            _currentState.EnterState(this);
+            CurrentState = _playerIdleState;
+            CurrentState.EnterState(this);
         }
 
         private void Update()
         {
             GetInput();
-            _currentState.UpdateState();
+            CurrentState.UpdateState();
 
-            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping)  SwitchState(PlayerJumpState);
-            else if (m_Input == Vector2.zero && !m_IsJumping) SwitchState(PlayerIdleState);
-            else if (m_Input != Vector2.zero && !m_IsJumping) SwitchState(PlayerMoveState);
+            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping)  SwitchState(_playerJumpState);
+            else if (m_PlayerInput == Vector2.zero && !m_IsJumping) SwitchState(_playerIdleState);
+            else if (m_PlayerInput != Vector2.zero && !m_IsJumping) SwitchState(_playerMoveState);
+            
+            SetAnimationLayerWeight();
         }
 
-        private void FixedUpdate() => _currentState.FixedUpdateState();
+        private void FixedUpdate() => CurrentState.FixedUpdateState();
 
         private void SwitchState(PlayerBaseState state)
         {
-            _currentState = state;
+            CurrentState = state;
             state.EnterState(this);
         }
 
         private void GetInput()
         {
-            m_Input.x = Input.GetAxis("Horizontal");
-            m_Input.y = Input.GetAxis("Vertical");
+            m_PlayerInput.x = Input.GetAxis("Horizontal");
+            m_PlayerInput.y = Input.GetAxis("Vertical");
 
-            m_Animator.SetFloat(AnimatorHashes.InputX, m_Input.x, 0.1f, Time.deltaTime);
-            m_Animator.SetFloat(AnimatorHashes.InputY, m_Input.y, 0.1f, Time.deltaTime);
+            Animator.SetFloat(AnimatorHashes.InputX, m_PlayerInput.x, 0.1f, Time.deltaTime);
+            Animator.SetFloat(AnimatorHashes.InputY, m_PlayerInput.y, 0.1f, Time.deltaTime);
 
             SpeedUp(Input.GetKey(KeyCode.LeftShift));
             
-            if (Input.GetKeyDown(KeyCode.C)) m_IsCrouching = !m_IsCrouching;
+            if (Input.GetKeyDown(KeyCode.C)) IsCrouching = !IsCrouching;
         }
         
-        private void OnAnimatorMove() => m_RootMotion += m_Animator.deltaPosition;
+        private void OnAnimatorMove() => m_RootMotion += Animator.deltaPosition;
 
         private void SpeedUp(bool flag)
         {
-            m_GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
-            m_JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
+            GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
+            JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
+        }
+        
+        private void SetAnimationLayerWeight()
+        {
+            AnimatorWeight = Mathf.Lerp(AnimatorWeight, IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
+            Animator.SetLayerWeight(1, AnimatorWeight);
         }
     }
 }

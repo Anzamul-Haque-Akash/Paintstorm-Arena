@@ -10,17 +10,12 @@ namespace State_Machine
 
         public override void EnterState(PlayerStateManager playerStateManager)
         {
-            Debug.Log("Player in jump state");
             _playerStateManager = playerStateManager;
-
             _playerStateManager.m_IsJumping = true;
             Jump();
         }
 
-        public override void UpdateState()
-        {
-            Debug.Log("Player in jump update state");
-        }
+        public override void UpdateState() { }
 
         public override void FixedUpdateState()
         {
@@ -41,22 +36,21 @@ namespace State_Machine
             _playerStateManager.m_CharacterController.Move(displacement);
             _playerStateManager.m_IsJumping = !_playerStateManager.m_CharacterController.isGrounded;
             _playerStateManager.m_RootMotion = Vector3.zero;
-            _playerStateManager.m_Animator.SetBool(AnimatorHashes.IsJumping, _playerStateManager.m_IsJumping);
+            _playerStateManager.Animator.SetBool(AnimatorHashes.IsJumping, _playerStateManager.m_IsJumping);
         }
 
         private Vector3 CalculateAirController()
         {
-            return ((_playerStateManager.transform.forward * _playerStateManager.m_Input.y) +
-                    (_playerStateManager.transform.right * _playerStateManager.m_Input.x)) *
+            return ((_playerStateManager.transform.forward * _playerStateManager.m_PlayerInput.y) +
+                    (_playerStateManager.transform.right * _playerStateManager.m_PlayerInput.x)) *
                    (Player.Instance.PlayerData.m_AirControl / 100);
         }
 
         private void SetInAir(float jumpVelocity)
         {
-            _playerStateManager.m_Velocity = _playerStateManager.m_Animator.velocity *
-                                             (_playerStateManager.m_JumpDamp * _playerStateManager.m_GroundSpeed);
+            _playerStateManager.m_Velocity = _playerStateManager.Animator.velocity * (_playerStateManager.JumpDamp * _playerStateManager.GroundSpeed);
             _playerStateManager.m_Velocity.y = jumpVelocity;
-            _playerStateManager.m_Animator.SetBool(AnimatorHashes.IsJumping, true);
+            _playerStateManager.Animator.SetBool(AnimatorHashes.IsJumping, true);
         }
     }
 }

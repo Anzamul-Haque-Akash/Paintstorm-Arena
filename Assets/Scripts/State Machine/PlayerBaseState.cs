@@ -4,7 +4,6 @@ namespace State_Machine
     {
         public abstract void EnterState(PlayerStateManager playerStateManager);
         public abstract void UpdateState();
-        
         public abstract void FixedUpdateState();
     }
 }
