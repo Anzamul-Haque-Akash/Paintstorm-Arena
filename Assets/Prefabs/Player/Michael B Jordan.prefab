@@ -2200,11 +2200,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8449628060009473786}
+      addedObject: {fileID: 1518938830372778243}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3185196308131237572}
+      addedObject: {fileID: 8449628060009473786}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
       insertIndex: -1
@@ -2402,6 +2402,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 0369e5c161e3f44a0b3a76e39798c4a5,
     type: 2}
+--- !u!114 &1518938830372778243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231994007795615284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a8a7279399fcc4ea3877e73da7e3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 1526784786007115508}
+  m_CharacterController: {fileID: 1070253940184469616}
+  m_Input: {x: 0, y: 0}
+  m_RootMotion: {x: 0, y: 0, z: 0}
+  m_GroundSpeed: 0
+  m_JumpDamp: 0
+  m_Velocity: {x: 0, y: 0, z: 0}
+  m_IsJumping: 0
+  m_IsCrouching: 0
+  m_AnimatorWeight: 0
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,20 +2436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce76207802f8940a2836530937908e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3185196308131237572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5231994007795615284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419b33f12432579448f884520620cc0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 1526784786007115508}
-  m_CharacterController: {fileID: 1070253940184469616}
 --- !u!114 &6278136725433608165
 MonoBehaviour:
   m_ObjectHideFlags: 0
