@@ -10,7 +10,7 @@ namespace State_Machine.States
         {
             _playerStateManager = playerStateManager;
 
-            _playerStateManager.m_IsReloading = true;
+            Player.Instance.m_IsReloading = true;
             
             Player.Instance.WeaponAnimationEvents.WeaponAnimationEvent.AddListener(OnAnimationEvent);
 
@@ -54,7 +54,7 @@ namespace State_Machine.States
 
         private void ReloadComplete()
         {
-            _playerStateManager.m_IsReloading = false;
+            Player.Instance.m_IsReloading = false;
         }
     }
 }

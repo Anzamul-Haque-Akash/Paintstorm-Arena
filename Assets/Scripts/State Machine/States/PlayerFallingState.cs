@@ -10,7 +10,7 @@ namespace State_Machine.States
         public override void EnterState(PlayerStateManager playerStateManager)
         {
             _playerStateManager = playerStateManager;
-            _playerStateManager.m_IsFalling = true;
+            Player.Instance.m_IsFalling = true;
         }
         
         public override void UpdateState() { }
@@ -25,7 +25,7 @@ namespace State_Machine.States
                     break;
                 case true:
                     Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, false);
-                    _playerStateManager.m_IsFalling = false;
+                    Player.Instance.m_IsFalling = false;
                     break;
             }
         }

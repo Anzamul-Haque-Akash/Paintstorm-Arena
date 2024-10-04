@@ -1,4 +1,5 @@
 using Helper_Scripts;
+using Sirenix.OdinInspector;
 using SOs;
 using UnityEngine;
 
@@ -16,6 +17,10 @@ namespace Player_Scripts
         [field: SerializeField] public WeaponAnimationEvents WeaponAnimationEvents { get; private set; }
         [field: SerializeField] public GameObject BodyPod { get; private set; }
         [field: SerializeField] public GameObject HandPod { get; private set; }
+        
+        [ReadOnly] public bool m_IsJumping;
+        [ReadOnly] public bool m_IsFalling;
+        [ReadOnly] public bool m_IsReloading;
         
         private void Awake() => Instance = this;
     }

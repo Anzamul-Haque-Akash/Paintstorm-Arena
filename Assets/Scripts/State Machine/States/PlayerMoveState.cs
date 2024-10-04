@@ -7,20 +7,17 @@ namespace State_Machine.States
     {
         private PlayerStateManager _playerStateManager;
 
-        public override void EnterState(PlayerStateManager playerStateManager) =>
-            _playerStateManager = playerStateManager;
+        public override void EnterState(PlayerStateManager playerStateManager) => _playerStateManager = playerStateManager;
 
-        public override void UpdateState()
-        {
-        }
+        public override void UpdateState() { }
 
         public override void FixedUpdateState() => UpdateOnGround();
 
         private void UpdateOnGround()
         {
-            Vector3 stepForwardAmount = _playerStateManager.m_IsJumping ? CalculateAirMove() : CalculateGroundMove();
+            Vector3 stepForwardAmount = Player.Instance.m_IsJumping ? CalculateAirMove() : CalculateGroundMove();
             
-            Vector3 stepDownAmunt = _playerStateManager.m_IsJumping
+            Vector3 stepDownAmunt = Player.Instance.m_IsJumping
                 ? Vector3.zero
                 : Vector3.down * Player.Instance.PlayerData.m_StepDown;
 

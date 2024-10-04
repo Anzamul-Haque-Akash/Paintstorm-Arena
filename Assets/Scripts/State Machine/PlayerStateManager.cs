@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Constants;
-using Helper_Scripts;
 using Player_Scripts;
-using Sirenix.OdinInspector;
 using State_Machine.States;
 using UnityEngine;
 
@@ -21,10 +19,6 @@ namespace State_Machine
         [HideInInspector] public Vector3 m_Velocity;
         [HideInInspector] public Vector3 m_RootMotion;
         
-        [ReadOnly] public bool m_IsJumping;
-        [ReadOnly] public bool m_IsFalling;
-        [ReadOnly] public bool m_IsReloading;
-
         private List<PlayerBaseState> _currentStates;
 
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
@@ -57,29 +51,29 @@ namespace State_Machine
             
             foreach (PlayerBaseState state in _currentStates) state.UpdateState();
 
-            if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling)
+            if (m_PlayerInput == Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerIdleState);
             }
-            if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling)
+            if (m_PlayerInput != Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerMoveState);
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)
+            if (Input.GetKeyDown(KeyCode.Space) && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerJumpState);
                 SwitchState(_playerMoveState);
             }
-            if (!Player.Instance.CharacterController.isGrounded && !m_IsJumping && !m_IsFalling)
+            if (!Player.Instance.CharacterController.isGrounded && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerFallingState);
                 SwitchState(_playerMoveState);
             }
-            if (Input.GetKeyDown(KeyCode.R) && !m_IsFalling && !m_IsJumping && !m_IsReloading)
+            if (Input.GetKeyDown(KeyCode.R) && !Player.Instance.m_IsFalling && !Player.Instance.m_IsJumping && !Player.Instance.m_IsReloading)
             {
                 _currentStates.Clear();
                 SwitchState(_playerReloadState);

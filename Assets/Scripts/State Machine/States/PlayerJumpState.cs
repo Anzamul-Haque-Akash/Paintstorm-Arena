@@ -11,7 +11,7 @@ namespace State_Machine.States
         public override void EnterState(PlayerStateManager playerStateManager)
         {
             _playerStateManager = playerStateManager;
-            _playerStateManager.m_IsJumping = true;
+            Player.Instance.m_IsJumping = true;
             Jump();
         }
 
@@ -19,7 +19,7 @@ namespace State_Machine.States
 
         public override void FixedUpdateState()
         {
-            if (_playerStateManager.m_IsJumping) UpdateInAir();
+            if (Player.Instance.m_IsJumping) UpdateInAir();
         }
         
         private void Jump()
@@ -34,8 +34,8 @@ namespace State_Machine.States
             _playerStateManager.m_Velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
             Vector3 displacement = _playerStateManager.m_Velocity * Time.fixedDeltaTime;
             Player.Instance.CharacterController.Move(displacement);
-            _playerStateManager.m_IsJumping = !Player.Instance.CharacterController.isGrounded;
-            Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, _playerStateManager.m_IsJumping);
+            Player.Instance.m_IsJumping = !Player.Instance.CharacterController.isGrounded;
+            Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, Player.Instance.m_IsJumping);
         }
     }
 }
