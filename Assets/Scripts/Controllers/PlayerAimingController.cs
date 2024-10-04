@@ -5,7 +5,7 @@ using Weapon_Scripts;
 
 namespace Controllers
 {
-    public class AimingController : MonoBehaviour
+    public class PlayerAimingController : MonoBehaviour
     {
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;

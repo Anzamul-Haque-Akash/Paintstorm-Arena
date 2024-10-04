@@ -2360,7 +2360,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.7
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2402,6 +2402,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 0369e5c161e3f44a0b3a76e39798c4a5,
     type: 2}
+  <CharacterController>k__BackingField: {fileID: 1070253940184469616}
+  <Animator>k__BackingField: {fileID: 1526784786007115508}
+  <RigAnimator>k__BackingField: {fileID: 8030187440944503772}
 --- !u!114 &1518938830372778243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2424,6 +2427,7 @@ MonoBehaviour:
   m_Velocity: {x: 0, y: 0, z: 0}
   m_RootMotion: {x: 0, y: 0, z: 0}
   m_IsJumping: 0
+  m_IsFalling: 0
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0

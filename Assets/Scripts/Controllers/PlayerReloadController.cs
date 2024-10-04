@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class ReloadController : MonoBehaviour
+    public class PlayerReloadController : MonoBehaviour
     {
         [SerializeField] private Animator m_RigLayerAnimator;
         [SerializeField] private GameObject m_BodyPod;

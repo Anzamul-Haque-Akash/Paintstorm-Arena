@@ -2,7 +2,7 @@ using Constants;
 using Player_Scripts;
 using UnityEngine;
 
-namespace State_Machine
+namespace State_Machine.States
 {
     public class PlayerFallingState : PlayerBaseState
     {
@@ -21,22 +21,22 @@ namespace State_Machine
         {
             Vector3 stepForwardAmount = _playerStateManager.m_RootMotion * _playerStateManager.GroundSpeed;
             Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
-            _playerStateManager.m_CharacterController.Move(stepForwardAmount + stepDownAmunt);
+            Player.Instance.CharacterController.Move(stepForwardAmount + stepDownAmunt);
             _playerStateManager.m_RootMotion = Vector3.zero;
             
-            if (!_playerStateManager.m_CharacterController.isGrounded) SetInAir(0f);
-            if (_playerStateManager.m_CharacterController.isGrounded)
+            if (!Player.Instance.CharacterController.isGrounded) SetInAir(0f);
+            if (Player.Instance.CharacterController.isGrounded)
             {
-                _playerStateManager.Animator.SetBool(AnimatorHashes.IsJumping, false);
+                Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, false);
                 _playerStateManager.m_IsFalling = false;
             }
         }
         
         private void SetInAir(float jumpVelocity)
         {
-            _playerStateManager.m_Velocity = _playerStateManager.Animator.velocity * (_playerStateManager.JumpDamp * _playerStateManager.GroundSpeed);
+            _playerStateManager.m_Velocity = Player.Instance.Animator.velocity * (_playerStateManager.JumpDamp * _playerStateManager.GroundSpeed);
             _playerStateManager.m_Velocity.y = jumpVelocity;
-            _playerStateManager.Animator.SetBool(AnimatorHashes.IsJumping, true);
+            Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, true);
         }
     }
 }
