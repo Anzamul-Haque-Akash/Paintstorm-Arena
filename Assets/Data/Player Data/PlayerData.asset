@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefb72509315743c197735d76d62975b, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  m_Gravity: 40
+  m_Gravity: 50
   m_GroundSpeed: 1
   m_GroundMaxSpeed: 1.5
   m_JumpHeight: 1.5
   m_JumpMaxHeight: 2
   m_JumpDamp: 0.3
   m_MaxJumpDamp: 0.5
-  m_StepDown: 0.06
   m_AirSpeed: 2.5
   m_AirMaxSpeed: 3
   m_CrouchSpeed: 10
+  m_StepDown: 0.06
   m_TurnSpeed: 15
   m_SpineOffsetZ: {x: 50, y: 0, z: -60}
   m_HeadOffsetZ: {x: 5, y: 0, z: -15}
