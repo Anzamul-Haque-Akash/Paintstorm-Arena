@@ -19,10 +19,12 @@ namespace State_Machine
         public Vector3 m_Velocity;
         public Vector3 m_RootMotion;
         public bool m_IsJumping;
+        public bool m_IsFalling;
         
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
         private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
+        private readonly PlayerFallingState _playerFallingState = new PlayerFallingState();
 
         private void Start()
         {
@@ -35,9 +37,10 @@ namespace State_Machine
             GetInput();
             CurrentState.UpdateState();
 
-            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping)  SwitchState(_playerJumpState);
-            else if (m_PlayerInput == Vector2.zero && !m_IsJumping) SwitchState(_playerIdleState);
-            else if (m_PlayerInput != Vector2.zero && !m_IsJumping) SwitchState(_playerMoveState);
+            if(!m_CharacterController.isGrounded && !m_IsJumping && !m_IsFalling) SwitchState(_playerFallingState);
+            else if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)  SwitchState(_playerJumpState);
+            else if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling) SwitchState(_playerIdleState);
+            else if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling) SwitchState(_playerMoveState);
             
             SetAnimationLayerWeight();
         }
