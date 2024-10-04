@@ -13,10 +13,10 @@ namespace SOs
         public float m_JumpMaxHeight;
         public float m_JumpDamp;
         public float m_MaxJumpDamp;
-        public float m_StepDown;
         public float m_AirSpeed;
         public float m_AirMaxSpeed;
         public float m_CrouchSpeed;
+        public float m_StepDown;
 
         [Space] [Title("Player Aiming Data")] public float m_TurnSpeed;
         [Header("Player Lean Aim Data")] public Vector3 m_SpineOffsetZ;

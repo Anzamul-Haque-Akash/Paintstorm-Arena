@@ -20,9 +20,9 @@ namespace State_Machine
         public Vector3 m_RootMotion;
         public bool m_IsJumping;
         public bool m_IsFalling;
-        
+
         private List<PlayerBaseState> _currentStates;
-        
+
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
         private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
@@ -31,12 +31,12 @@ namespace State_Machine
         private void Start()
         {
             SpeedUp(false);
-            
+
             _currentStates = new List<PlayerBaseState>();
             _currentStates.Add(_playerIdleState);
             foreach (PlayerBaseState state in _currentStates) state.EnterState(this);
         }
-        
+
         private void SpeedUp(bool flag)
         {
             GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
@@ -48,6 +48,7 @@ namespace State_Machine
         private void Update()
         {
             GetInput();
+            
             foreach (PlayerBaseState state in _currentStates) state.UpdateState();
 
             if (!Player.Instance.CharacterController.isGrounded && !m_IsJumping && !m_IsFalling)
@@ -72,7 +73,7 @@ namespace State_Machine
                 _currentStates.Clear();
                 SwitchState(_playerMoveState);
             }
-            
+
             SetAnimationLayerWeight();
         }
 
@@ -96,16 +97,22 @@ namespace State_Machine
             Player.Instance.Animator.SetFloat(AnimatorHashes.InputY, m_PlayerInput.y, 0.1f, Time.deltaTime);
 
             SpeedUp(Input.GetKey(KeyCode.LeftShift));
-            
+
             if (Input.GetKeyDown(KeyCode.C)) IsCrouching = !IsCrouching;
         }
-        
+
         private void OnAnimatorMove() => m_RootMotion += Player.Instance.Animator.deltaPosition;
         
-        private void SetAnimationLayerWeight()
+        public void SetAnimationLayerWeight()
         {
             AnimatorWeight = Mathf.Lerp(AnimatorWeight, IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             Player.Instance.Animator.SetLayerWeight(1, AnimatorWeight);
+        }
+
+        public void SetInAir(float jumpVelocity)
+        {
+            m_Velocity = Player.Instance.Animator.velocity * (JumpDamp * GroundSpeed);
+            m_Velocity.y = jumpVelocity;
         }
     }
 }

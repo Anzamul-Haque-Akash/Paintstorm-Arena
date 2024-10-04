@@ -6,22 +6,21 @@ namespace State_Machine.States
     public class PlayerFallingState : PlayerBaseState
     {
         private PlayerStateManager _playerStateManager;
+
         public override void EnterState(PlayerStateManager playerStateManager)
         {
             _playerStateManager = playerStateManager;
             _playerStateManager.m_IsFalling = true;
         }
-
-        public override void UpdateState() { }
-
-        public override void FixedUpdateState() => UpdateOnGround();
         
-        private void UpdateOnGround()
+        public override void UpdateState() { }
+        
+        public override void FixedUpdateState()
         {
             switch (Player.Instance.CharacterController.isGrounded)
             {
                 case false:
-                    SetInAir(0f);
+                    _playerStateManager.SetInAir(0f);
                     Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, true);
                     break;
                 case true:
@@ -29,12 +28,6 @@ namespace State_Machine.States
                     _playerStateManager.m_IsFalling = false;
                     break;
             }
-        }
-        
-        private void SetInAir(float jumpVelocity)
-        {
-            _playerStateManager.m_Velocity = Player.Instance.Animator.velocity * (_playerStateManager.JumpDamp * _playerStateManager.GroundSpeed);
-            _playerStateManager.m_Velocity.y = jumpVelocity;
         }
     }
 }
