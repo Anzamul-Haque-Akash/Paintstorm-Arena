@@ -15,10 +15,23 @@ namespace State_Machine.States
         
         private void UpdateOnGround()
         {
-            Vector3 stepForwardAmount = _playerStateManager.m_RootMotion * _playerStateManager.GroundSpeed;
-            Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
+            Vector3 stepForwardAmount = _playerStateManager.m_IsJumping ? CalculateAirMove() : CalculateGroundMove();
+            Vector3 stepDownAmunt = _playerStateManager.m_IsJumping ? Vector3.zero : Vector3.down * Player.Instance.PlayerData.m_StepDown;
+            
             Player.Instance.CharacterController.Move(stepForwardAmount + stepDownAmunt);
+            
             _playerStateManager.m_RootMotion = Vector3.zero;
+        }
+
+        private Vector3 CalculateGroundMove()
+        {
+            return _playerStateManager.m_RootMotion * _playerStateManager.GroundSpeed;
+        }
+        private Vector3 CalculateAirMove()
+        {
+            return ((_playerStateManager.transform.forward * _playerStateManager.m_PlayerInput.y) +
+                    (_playerStateManager.transform.right * _playerStateManager.m_PlayerInput.x)) *
+                   (Player.Instance.PlayerData.m_AirSpeed / 100);
         }
     }
 }

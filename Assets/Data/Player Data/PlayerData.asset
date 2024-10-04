@@ -16,10 +16,12 @@ MonoBehaviour:
   m_GroundSpeed: 1
   m_GroundMaxSpeed: 1.5
   m_JumpHeight: 1.5
+  m_JumpMaxHeight: 2
   m_JumpDamp: 0.3
   m_MaxJumpDamp: 0.5
   m_StepDown: 0.06
-  m_AirControl: 2.5
+  m_AirSpeed: 2.5
+  m_AirMaxSpeed: 3
   m_CrouchSpeed: 10
   m_TurnSpeed: 15
   m_SpineOffsetZ: {x: 50, y: 0, z: -60}

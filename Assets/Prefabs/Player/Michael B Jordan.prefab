@@ -2360,7 +2360,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.7
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2417,8 +2417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a8a7279399fcc4ea3877e73da7e3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CharacterController: {fileID: 1070253940184469616}
-  <Animator>k__BackingField: {fileID: 1526784786007115508}
   <GroundSpeed>k__BackingField: 0
   <JumpDamp>k__BackingField: 0
   <IsCrouching>k__BackingField: 0

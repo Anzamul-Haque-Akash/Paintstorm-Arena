@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Constants;
 using Player_Scripts;
 using State_Machine.States;
@@ -7,8 +8,9 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        [field: SerializeField] public PlayerBaseState CurrentState { get; private set; }
         [field: SerializeField] public float GroundSpeed { get; private set; }
+        [field: SerializeField] public float AirSpeed { get; private set; }
+        [field: SerializeField] public float JumpHeight { get; private set; }
         [field: SerializeField] public float JumpDamp { get; private set; }
         [field: SerializeField] public bool IsCrouching { get; private set; }
         [field: SerializeField] public float AnimatorWeight { get; private set; }
@@ -19,6 +21,8 @@ namespace State_Machine
         public bool m_IsJumping;
         public bool m_IsFalling;
         
+        private List<PlayerBaseState> _currentStates;
+        
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
         private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
@@ -26,28 +30,60 @@ namespace State_Machine
 
         private void Start()
         {
-            CurrentState = _playerIdleState;
-            CurrentState.EnterState(this);
+            SpeedUp(false);
+            
+            _currentStates = new List<PlayerBaseState>();
+            _currentStates.Add(_playerIdleState);
+            foreach (PlayerBaseState state in _currentStates) state.EnterState(this);
+        }
+        
+        private void SpeedUp(bool flag)
+        {
+            GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
+            JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
+            AirSpeed = flag ? Player.Instance.PlayerData.m_AirMaxSpeed : Player.Instance.PlayerData.m_AirSpeed;
+            JumpHeight = flag ? Player.Instance.PlayerData.m_JumpMaxHeight : Player.Instance.PlayerData.m_JumpHeight;
         }
 
         private void Update()
         {
             GetInput();
-            CurrentState.UpdateState();
+            foreach (PlayerBaseState state in _currentStates) state.UpdateState();
 
-            if(!Player.Instance.CharacterController.isGrounded && !m_IsJumping && !m_IsFalling) SwitchState(_playerFallingState);
-            else if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)  SwitchState(_playerJumpState);
-            else if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling) SwitchState(_playerIdleState);
-            else if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling) SwitchState(_playerMoveState);
+            if (!Player.Instance.CharacterController.isGrounded && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerFallingState);
+                SwitchState(_playerMoveState);
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerJumpState);
+                SwitchState(_playerMoveState);
+            }
+            else if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerIdleState);
+            }
+            else if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerMoveState);
+            }
             
             SetAnimationLayerWeight();
         }
 
-        private void FixedUpdate() => CurrentState.FixedUpdateState();
+        private void FixedUpdate()
+        {
+            foreach (PlayerBaseState state in _currentStates) state.FixedUpdateState();
+        }
 
         private void SwitchState(PlayerBaseState state)
         {
-            CurrentState = state;
+            _currentStates.Add(state);
             state.EnterState(this);
         }
 
@@ -65,12 +101,6 @@ namespace State_Machine
         }
         
         private void OnAnimatorMove() => m_RootMotion += Player.Instance.Animator.deltaPosition;
-
-        private void SpeedUp(bool flag)
-        {
-            GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
-            JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
-        }
         
         private void SetAnimationLayerWeight()
         {
