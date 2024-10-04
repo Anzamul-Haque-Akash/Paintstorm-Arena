@@ -2,26 +2,20 @@ using UnityEngine;
 
 namespace Weapon_Scripts
 {
-    public class RaycastWeapon : MonoBehaviour
+    public class WeaponRaycastShoot : MonoBehaviour
     {
         [SerializeField] private Transform m_RayCastOrigin;
         [SerializeField] private Transform m_RaycastDestination;
         [SerializeField] private GameObject m_Projectile;
         [SerializeField] private Transform m_ProjectileOrigin;
         [SerializeField] private WeaponRecoil m_WeaponRecoil;
-
-        [field: SerializeField] public bool IsFiring { get; private set; }
-
+        
         private Ray _ray;
         private RaycastHit _hitInfo;
         private Vector3 _direction;
 
-        private void Start() => IsFiring = false;
-
-        public void StartFiring()
+        public void Shoot()
         {
-            IsFiring = true;
-
             _direction = (m_RaycastDestination.position - m_RayCastOrigin.position).normalized;
 
             _ray.origin = m_RayCastOrigin.position;
@@ -38,7 +32,5 @@ namespace Weapon_Scripts
 
             m_WeaponRecoil.GenerateRecoil();
         }
-
-        public void StopFiring() => IsFiring = false;
     }
 }
