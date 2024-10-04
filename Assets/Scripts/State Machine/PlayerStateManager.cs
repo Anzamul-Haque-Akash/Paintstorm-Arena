@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Constants;
+using Helper_Scripts;
 using Player_Scripts;
+using Sirenix.OdinInspector;
 using State_Machine.States;
 using UnityEngine;
 
@@ -8,18 +10,20 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        [field: SerializeField] public float GroundSpeed { get; private set; }
-        [field: SerializeField] public float AirSpeed { get; private set; }
-        [field: SerializeField] public float JumpHeight { get; private set; }
-        [field: SerializeField] public float JumpDamp { get; private set; }
-        [field: SerializeField] public bool IsCrouching { get; private set; }
-        [field: SerializeField] public float AnimatorWeight { get; private set; }
-
-        public Vector2 m_PlayerInput;
-        public Vector3 m_Velocity;
-        public Vector3 m_RootMotion;
-        public bool m_IsJumping;
-        public bool m_IsFalling;
+        [field: SerializeField, HideInInspector] public float GroundSpeed { get; private set; }
+        [field: SerializeField, HideInInspector] public float AirSpeed { get; private set; }
+        [field: SerializeField, HideInInspector] public float JumpHeight { get; private set; }
+        [field: SerializeField, HideInInspector] public float JumpDamp { get; private set; }
+        [field: SerializeField, HideInInspector] public bool IsCrouching { get; private set; }
+        [field: SerializeField, HideInInspector] public float AnimatorWeight { get; private set; }
+        
+        [HideInInspector] public Vector2 m_PlayerInput;
+        [HideInInspector] public Vector3 m_Velocity;
+        [HideInInspector] public Vector3 m_RootMotion;
+        
+        [ReadOnly] public bool m_IsJumping;
+        [ReadOnly] public bool m_IsFalling;
+        [ReadOnly] public bool m_IsReloading;
 
         private List<PlayerBaseState> _currentStates;
 
@@ -27,10 +31,12 @@ namespace State_Machine
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
         private readonly PlayerJumpState _playerJumpState = new PlayerJumpState();
         private readonly PlayerFallingState _playerFallingState = new PlayerFallingState();
-
+        private readonly PlayerReloadState _playerReloadState = new PlayerReloadState();
+        
         private void Start()
         {
             SpeedUp(false);
+            Player.Instance.HandPod.SetActive(false);
 
             _currentStates = new List<PlayerBaseState>();
             _currentStates.Add(_playerIdleState);
@@ -51,27 +57,32 @@ namespace State_Machine
             
             foreach (PlayerBaseState state in _currentStates) state.UpdateState();
 
+            if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerIdleState);
+            }
+            if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerMoveState);
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)
+            {
+                _currentStates.Clear();
+                SwitchState(_playerJumpState);
+                SwitchState(_playerMoveState);
+            }
             if (!Player.Instance.CharacterController.isGrounded && !m_IsJumping && !m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerFallingState);
                 SwitchState(_playerMoveState);
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && !m_IsJumping && !m_IsFalling)
+            if (Input.GetKeyDown(KeyCode.R) && !m_IsFalling && !m_IsJumping && !m_IsReloading)
             {
                 _currentStates.Clear();
-                SwitchState(_playerJumpState);
-                SwitchState(_playerMoveState);
-            }
-            else if (m_PlayerInput == Vector2.zero && !m_IsJumping && !m_IsFalling)
-            {
-                _currentStates.Clear();
-                SwitchState(_playerIdleState);
-            }
-            else if (m_PlayerInput != Vector2.zero && !m_IsJumping && !m_IsFalling)
-            {
-                _currentStates.Clear();
-                SwitchState(_playerMoveState);
+                SwitchState(_playerReloadState);
             }
 
             SetAnimationLayerWeight();

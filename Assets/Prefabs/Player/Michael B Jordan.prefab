@@ -2209,10 +2209,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6278136725433608165}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 603518665547381179}
   m_SourcePrefab: {fileID: 100100000, guid: f99b5bb02948b204aa616163316d53a8, type: 3}
 --- !u!4 &209364794615427111 stripped
 Transform:
@@ -2405,6 +2401,9 @@ MonoBehaviour:
   <CharacterController>k__BackingField: {fileID: 1070253940184469616}
   <Animator>k__BackingField: {fileID: 1526784786007115508}
   <RigAnimator>k__BackingField: {fileID: 8030187440944503772}
+  <WeaponAnimationEvents>k__BackingField: {fileID: 6065648942895801484}
+  <BodyPod>k__BackingField: {fileID: 5156866719590976112}
+  <HandPod>k__BackingField: {fileID: 4471483912588876778}
 --- !u!114 &1518938830372778243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2418,6 +2417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GroundSpeed>k__BackingField: 0
+  <AirSpeed>k__BackingField: 0
+  <JumpHeight>k__BackingField: 0
   <JumpDamp>k__BackingField: 0
   <IsCrouching>k__BackingField: 0
   <AnimatorWeight>k__BackingField: 0
@@ -2426,6 +2427,7 @@ MonoBehaviour:
   m_RootMotion: {x: 0, y: 0, z: 0}
   m_IsJumping: 0
   m_IsFalling: 0
+  m_IsReloading: 0
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2454,22 +2456,6 @@ MonoBehaviour:
   m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}
   m_CinemachineCameraOffset: {fileID: 0}
---- !u!114 &603518665547381179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5231994007795615284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31f82a58ec37042b195c4e2efe26b290, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayerAnimator: {fileID: 8030187440944503772}
-  m_BodyPod: {fileID: 5156866719590976112}
-  m_HandPod: {fileID: 4471483912588876778}
-  m_WeaponAnimationEvents: {fileID: 6065648942895801484}
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,
