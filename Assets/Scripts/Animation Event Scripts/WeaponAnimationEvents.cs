@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helper_Scripts
+namespace Animation_Event_Scripts
 {
     public class AnimationEvent : UnityEvent<string> { }
     
