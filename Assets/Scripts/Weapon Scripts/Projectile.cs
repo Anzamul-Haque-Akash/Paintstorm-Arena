@@ -1,4 +1,3 @@
-using Shaders;
 using UnityEngine;
 
 namespace Weapon_Scripts
@@ -6,6 +5,7 @@ namespace Weapon_Scripts
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float m_ProjectileSpeed;
+        [SerializeField] private GameObject m_ProjectileHitDecal;
         private Rigidbody _rb;
 
         private void Start()
@@ -22,7 +22,8 @@ namespace Weapon_Scripts
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10f))
             {
-                other.gameObject.GetComponent<VertexPaintController>()?.Paint(hit);
+                //other.gameObject.GetComponent<VertexPaintController>()?.Paint(hit);
+                Instantiate(m_ProjectileHitDecal, hit.point, Quaternion.LookRotation(hit.normal));
             }
             
             Destroy(gameObject);
