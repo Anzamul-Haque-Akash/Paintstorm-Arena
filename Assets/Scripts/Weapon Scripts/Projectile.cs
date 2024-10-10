@@ -6,6 +6,7 @@ namespace Weapon_Scripts
     {
         [SerializeField] private float m_ProjectileSpeed;
         [SerializeField] private GameObject m_ProjectileHitDecal;
+        [SerializeField] private GameObject m_ProjectileHitParticle;
         private Rigidbody _rb;
 
         private void Start()
@@ -23,6 +24,7 @@ namespace Weapon_Scripts
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10f))
             {
                 Instantiate(m_ProjectileHitDecal, hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(m_ProjectileHitParticle, hit.point, Quaternion.LookRotation(hit.normal));
             }
             
             Destroy(gameObject);

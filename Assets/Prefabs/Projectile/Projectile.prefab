@@ -100,6 +100,8 @@ MonoBehaviour:
   m_ProjectileSpeed: 150
   m_ProjectileHitDecal: {fileID: 8388281261148474650, guid: 9402580b9695640648cfdb47d9edc6db,
     type: 3}
+  m_ProjectileHitParticle: {fileID: 178192, guid: bcc7ca4e830e0401f8b8d267a394b0ca,
+    type: 3}
 --- !u!1001 &4775752040190380475
 PrefabInstance:
   m_ObjectHideFlags: 0
