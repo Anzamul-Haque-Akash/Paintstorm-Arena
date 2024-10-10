@@ -22,7 +22,6 @@ namespace Weapon_Scripts
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10f))
             {
-                //other.gameObject.GetComponent<VertexPaintController>()?.Paint(hit);
                 Instantiate(m_ProjectileHitDecal, hit.point, Quaternion.LookRotation(hit.normal));
             }
             
