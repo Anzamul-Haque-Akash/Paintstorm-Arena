@@ -1,3 +1,4 @@
+using Cinemachine;
 using Player_Scripts;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -7,6 +8,10 @@ namespace Controllers
 {
     public class PlayerAimingController : MonoBehaviour
     {
+        public Cinemachine.AxisState m_Xaxis;
+        public Cinemachine.AxisState m_Yaxis;
+        public Transform m_CmeraLookAt;
+        
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
@@ -19,10 +24,12 @@ namespace Controllers
         private float _headOffset;
         private float _weaponOffset;
         private float _cameraOffset;
+        private Cinemachine3rdPersonFollow _thirdPersonFollow;
 
         private void Start()
         {
             _mainCamera = Camera.main;
+            _thirdPersonFollow = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -32,11 +39,15 @@ namespace Controllers
             _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
-            _cameraOffset = Player.Instance.CinemachineCameraOffset.m_Offset.x;
+            _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
         }
 
         private void FixedUpdate()
         {
+            m_Xaxis.Update(Time.fixedDeltaTime);
+            m_Yaxis.Update(Time.fixedDeltaTime);
+            m_CmeraLookAt.eulerAngles = new Vector3(m_Yaxis.Value, m_Xaxis.Value, 0f);
+            
             float yawCamera = _mainCamera.transform.eulerAngles.y;
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f),
@@ -86,7 +97,7 @@ namespace Controllers
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
             _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
-            Player.Instance.CinemachineCameraOffset.m_Offset.x = _cameraOffset;
+            _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
         }
     }
 }

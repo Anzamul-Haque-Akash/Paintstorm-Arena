@@ -1,4 +1,5 @@
 using Animation_Event_Scripts;
+using Cinemachine;
 using Sirenix.OdinInspector;
 using SOs;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Player_Scripts
         [field: SerializeField] public GameObject BodyPod { get; private set; }
         [field: SerializeField] public GameObject HandPod { get; private set; }
         
-        [field: SerializeField] public CinemachineCameraOffset CinemachineCameraOffset { get; private set; }
+        [field: SerializeField] public CinemachineVirtualCamera CinemachineVcCamera { get; private set; }
         
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;

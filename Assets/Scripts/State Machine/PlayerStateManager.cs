@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cinemachine;
 using Constants;
 using Player_Scripts;
 using State_Machine.States;
@@ -20,6 +21,7 @@ namespace State_Machine
         [HideInInspector] public Vector3 m_RootMotion;
         
         private List<PlayerBaseState> _currentStates;
+        private Cinemachine3rdPersonFollow _thirdPersonFollow;
         private float _cameraOffset;
 
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
@@ -37,7 +39,8 @@ namespace State_Machine
             _currentStates.Add(_playerIdleState);
             foreach (PlayerBaseState state in _currentStates) state.EnterState(this);
             
-            _cameraOffset = Player.Instance.CinemachineCameraOffset.m_Offset.x;
+            _thirdPersonFollow = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
         }
 
         private void SpeedUp(bool flag)
@@ -123,7 +126,7 @@ namespace State_Machine
             float value = IsCrouching ? Player.Instance.PlayerData.m_CameraOffsetY.y : Player.Instance.PlayerData.m_CameraOffsetY.x;
             
             _cameraOffset = Mathf.Lerp(_cameraOffset, value, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
-            Player.Instance.CinemachineCameraOffset.m_Offset.y = _cameraOffset;
+            _thirdPersonFollow.ShoulderOffset.y = _cameraOffset;
         }
 
         public void SetInAir(float jumpVelocity)
