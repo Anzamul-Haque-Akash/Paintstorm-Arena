@@ -10,7 +10,6 @@ namespace Controllers
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
-        [SerializeField] private CinemachineCameraOffset m_CinemachineCameraOffset;
 
         private Camera _mainCamera;
         private WeaponRaycastShoot _weaponRaycastShoot;
@@ -33,7 +32,7 @@ namespace Controllers
             _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
-            _cameraOffset = m_CinemachineCameraOffset.m_Offset.x;
+            _cameraOffset = Player.Instance.CinemachineCameraOffset.m_Offset.x;
         }
 
         private void FixedUpdate()
@@ -87,7 +86,7 @@ namespace Controllers
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
             _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
-            m_CinemachineCameraOffset.m_Offset.x = _cameraOffset;
+            Player.Instance.CinemachineCameraOffset.m_Offset.x = _cameraOffset;
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Player_Scripts
         [field: SerializeField] public GameObject BodyPod { get; private set; }
         [field: SerializeField] public GameObject HandPod { get; private set; }
         
+        [field: SerializeField] public CinemachineCameraOffset CinemachineCameraOffset { get; private set; }
+        
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;

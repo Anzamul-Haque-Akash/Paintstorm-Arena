@@ -28,4 +28,5 @@ MonoBehaviour:
   m_HeadOffsetZ: {x: 5, y: 0, z: -15}
   m_WeaponPosOffsetX: {x: -0.08, y: 0.08, z: 0.2}
   m_CameraOffsetX: {x: -0.14, y: 0.14, z: 0.375}
+  m_CameraOffsetY: {x: 0.05, y: -0.22}
   m_LeanSpeed: 8

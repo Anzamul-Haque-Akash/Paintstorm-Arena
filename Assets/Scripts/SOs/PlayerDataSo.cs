@@ -23,6 +23,7 @@ namespace SOs
         public Vector3 m_HeadOffsetZ;
         public Vector3 m_WeaponPosOffsetX;
         public Vector3 m_CameraOffsetX;
+        public Vector2 m_CameraOffsetY;
         public float m_LeanSpeed;
     }
 }

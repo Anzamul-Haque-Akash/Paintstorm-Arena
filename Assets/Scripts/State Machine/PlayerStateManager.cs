@@ -20,6 +20,7 @@ namespace State_Machine
         [HideInInspector] public Vector3 m_RootMotion;
         
         private List<PlayerBaseState> _currentStates;
+        private float _cameraOffset;
 
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
@@ -35,6 +36,8 @@ namespace State_Machine
             _currentStates = new List<PlayerBaseState>();
             _currentStates.Add(_playerIdleState);
             foreach (PlayerBaseState state in _currentStates) state.EnterState(this);
+            
+            _cameraOffset = Player.Instance.CinemachineCameraOffset.m_Offset.x;
         }
 
         private void SpeedUp(bool flag)
@@ -80,6 +83,7 @@ namespace State_Machine
             }
 
             SetAnimationLayerWeight();
+            SetCrouchCameraOffset();
         }
 
         private void FixedUpdate()
@@ -107,11 +111,19 @@ namespace State_Machine
         }
 
         private void OnAnimatorMove() => m_RootMotion += Player.Instance.Animator.deltaPosition;
-        
-        public void SetAnimationLayerWeight()
+
+        private void SetAnimationLayerWeight()
         {
             AnimatorWeight = Mathf.Lerp(AnimatorWeight, IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             Player.Instance.Animator.SetLayerWeight(1, AnimatorWeight);
+        }
+
+        private void SetCrouchCameraOffset()
+        {
+            float value = IsCrouching ? Player.Instance.PlayerData.m_CameraOffsetY.y : Player.Instance.PlayerData.m_CameraOffsetY.x;
+            
+            _cameraOffset = Mathf.Lerp(_cameraOffset, value, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
+            Player.Instance.CinemachineCameraOffset.m_Offset.y = _cameraOffset;
         }
 
         public void SetInAir(float jumpVelocity)
