@@ -18,12 +18,13 @@ namespace Controllers
 
         private Camera _mainCamera;
         private WeaponRaycastShoot _weaponRaycastShoot;
-        private bool _isAiming;
+        private bool _isZoomIn;
 
         private float _spineOffset;
         private float _headOffset;
         private float _weaponOffset;
         private float _cameraOffset;
+        private float _zoomOffset;
         private Cinemachine3rdPersonFollow _thirdPersonFollow;
 
         private void Start()
@@ -40,6 +41,7 @@ namespace Controllers
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
             _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
+            _zoomOffset = _thirdPersonFollow.ShoulderOffset.z;
         }
 
         private void FixedUpdate()
@@ -57,7 +59,7 @@ namespace Controllers
         private void Update()
         {
             if (Input.GetMouseButtonDown(0) && !Player.Instance.m_IsReloading) _weaponRaycastShoot.Shoot();
-
+            
             if (Input.GetKey(KeyCode.E))
                 Lean(Player.Instance.PlayerData.m_SpineOffsetZ.z, Player.Instance.PlayerData.m_HeadOffsetZ.z,
                     Player.Instance.PlayerData.m_WeaponPosOffsetX.z, Player.Instance.PlayerData.m_CameraOffsetX.z);
@@ -69,6 +71,10 @@ namespace Controllers
             else
                 Lean(Player.Instance.PlayerData.m_SpineOffsetZ.y, Player.Instance.PlayerData.m_HeadOffsetZ.y,
                     Player.Instance.PlayerData.m_WeaponPosOffsetX.y, Player.Instance.PlayerData.m_CameraOffsetX.y);
+            
+            
+            _isZoomIn = Input.GetMouseButton(1);
+            CameraZoom();
         }
 
         private void Lean(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
@@ -98,6 +104,16 @@ namespace Controllers
 
             _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
+        }
+
+        private void CameraZoom()
+        {
+            _zoomOffset = Mathf.Lerp(_zoomOffset, _isZoomIn 
+                ? Player.Instance.PlayerData.m_ZoomInValue 
+                : Player.Instance.PlayerData.m_ZoomOutValue, 
+                Time.deltaTime * Player.Instance.PlayerData.m_ZoomInAndOutSpeed);
+            
+            _thirdPersonFollow.CameraDistance = _zoomOffset;
         }
     }
 }

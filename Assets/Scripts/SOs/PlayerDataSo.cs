@@ -25,5 +25,9 @@ namespace SOs
         public Vector3 m_CameraOffsetX;
         public Vector2 m_CameraOffsetY;
         public float m_LeanSpeed;
+        public float m_ZoomInValue;
+        public float m_ZoomOutValue;
+        public float m_ZoomInAndOutSpeed;
+        
     }
 }
