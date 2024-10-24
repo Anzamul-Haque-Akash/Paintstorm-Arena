@@ -24,6 +24,7 @@ namespace Player_Scripts
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;
+        [ReadOnly] public bool m_IsCrouching;
         
         private void Awake() => Instance = this;
     }

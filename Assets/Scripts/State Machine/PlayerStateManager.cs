@@ -10,7 +10,6 @@ namespace State_Machine
         [HideInInspector] public Vector2 m_PlayerInput;
         [HideInInspector] public Vector3 m_Velocity;
         [HideInInspector] public Vector3 m_RootMotion;
-        [HideInInspector] public bool m_IsCrouching;
         
         [field: SerializeField, HideInInspector] public float GroundSpeed { get; private set; }
         [field: SerializeField, HideInInspector] public float AirSpeed { get; private set; }
@@ -86,7 +85,7 @@ namespace State_Machine
 
         private void SetAnimationLayerWeight()
         {
-            AnimatorWeight = Mathf.Lerp(AnimatorWeight, m_IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
+            AnimatorWeight = Mathf.Lerp(AnimatorWeight, Player.Instance.m_IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             Player.Instance.Animator.SetLayerWeight(1, AnimatorWeight);
         }
         

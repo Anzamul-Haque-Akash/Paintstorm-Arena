@@ -23,7 +23,7 @@ namespace Controllers
             
             m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
 
-            if (Input.GetKeyDown(KeyCode.C)) m_PlayerStateManager.m_IsCrouching = !m_PlayerStateManager.m_IsCrouching;
+            if (Input.GetKeyDown(KeyCode.C)) Player.Instance.m_IsCrouching = !Player.Instance.m_IsCrouching;
         }
     }
 }
