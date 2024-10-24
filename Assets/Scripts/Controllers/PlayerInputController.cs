@@ -8,10 +8,8 @@ namespace Controllers
     public class PlayerInputController : MonoBehaviour
     {
         [SerializeField] private PlayerStateManager m_PlayerStateManager;
-        private void Update()
-        {
-            GetInput();
-        }
+
+        private void Update() => GetInput();
 
         private void GetInput()
         {
@@ -21,15 +19,21 @@ namespace Controllers
             Player.Instance.Animator.SetFloat(AnimatorHashes.InputY, Player.Instance.m_PlayerMoveInput.y, 0.1f, Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.C)) Player.Instance.m_IsCrouching = !Player.Instance.m_IsCrouching;
-            
+
             Player.Instance.m_PlayerJumpInput = Input.GetKeyDown(KeyCode.Space);
-            
+
             Player.Instance.m_PlayerReloadInput = Input.GetKeyDown(KeyCode.R);
 
             Player.Instance.m_PlayerShootInput = Input.GetMouseButtonDown(0);
-            
+
+            Player.Instance.m_PlayerCrouchAimInput = Input.GetKey(KeyCode.X);
+
+            Player.Instance.m_PlayerLeanRightAimInput = Input.GetKey(KeyCode.E);
+            Player.Instance.m_PlayerLeanLeftAimInput = Input.GetKey(KeyCode.Q);
+
             m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
             
+            Player.Instance.m_IsCameraZoomIn = Input.GetMouseButton(1);
         }
     }
 }

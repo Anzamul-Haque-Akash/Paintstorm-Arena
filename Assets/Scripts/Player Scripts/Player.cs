@@ -25,10 +25,14 @@ namespace Player_Scripts
         [ReadOnly] public bool m_PlayerJumpInput;
         [ReadOnly] public bool m_PlayerReloadInput;
         [ReadOnly] public bool m_PlayerShootInput;
+        [ReadOnly] public bool m_PlayerCrouchAimInput;
+        [ReadOnly] public bool m_PlayerLeanRightAimInput;
+        [ReadOnly] public bool m_PlayerLeanLeftAimInput;
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;
         [ReadOnly] public bool m_IsCrouching;
+        [ReadOnly] public bool m_IsCameraZoomIn;
         
         private void Awake() => Instance = this;
     }
