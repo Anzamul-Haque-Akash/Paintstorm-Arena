@@ -17,7 +17,7 @@ namespace State_Machine.States
         {
             Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
             Player.Instance.CharacterController.Move(stepDownAmunt);
-            _playerStateManager.m_RootMotion = Vector3.zero;
+            Player.Instance.m_RootMotion = Vector3.zero;
         }
     }
 }

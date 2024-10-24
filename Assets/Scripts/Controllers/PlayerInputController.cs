@@ -15,15 +15,18 @@ namespace Controllers
 
         private void GetInput()
         {
-            m_PlayerStateManager.m_PlayerInput.x = Input.GetAxis("Horizontal");
-            m_PlayerStateManager.m_PlayerInput.y = Input.GetAxis("Vertical");
-
-            Player.Instance.Animator.SetFloat(AnimatorHashes.InputX, m_PlayerStateManager.m_PlayerInput.x, 0.1f, Time.deltaTime);
-            Player.Instance.Animator.SetFloat(AnimatorHashes.InputY, m_PlayerStateManager.m_PlayerInput.y, 0.1f, Time.deltaTime);
-            
-            m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
+            Player.Instance.m_PlayerMoveInput.x = Input.GetAxis("Horizontal");
+            Player.Instance.m_PlayerMoveInput.y = Input.GetAxis("Vertical");
+            Player.Instance.Animator.SetFloat(AnimatorHashes.InputX, Player.Instance.m_PlayerMoveInput.x, 0.1f, Time.deltaTime);
+            Player.Instance.Animator.SetFloat(AnimatorHashes.InputY, Player.Instance.m_PlayerMoveInput.y, 0.1f, Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.C)) Player.Instance.m_IsCrouching = !Player.Instance.m_IsCrouching;
+            
+            Player.Instance.m_PlayerJumpInput = Input.GetKeyDown(KeyCode.Space);
+            
+            Player.Instance.m_PlayerReloadInput = Input.GetKeyDown(KeyCode.R);
+            
+            m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
         }
     }
 }

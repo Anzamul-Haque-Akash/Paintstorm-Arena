@@ -31,8 +31,8 @@ namespace State_Machine.States
         
         private void UpdateInAir()
         {
-            _playerStateManager.m_Velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
-            Vector3 displacement = _playerStateManager.m_Velocity * Time.fixedDeltaTime;
+            Player.Instance.m_Velocity.y -= Player.Instance.PlayerData.m_Gravity * Time.fixedDeltaTime;
+            Vector3 displacement = Player.Instance.m_Velocity * Time.fixedDeltaTime;
             Player.Instance.CharacterController.Move(displacement);
             Player.Instance.m_IsJumping = !Player.Instance.CharacterController.isGrounded;
             Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, Player.Instance.m_IsJumping);

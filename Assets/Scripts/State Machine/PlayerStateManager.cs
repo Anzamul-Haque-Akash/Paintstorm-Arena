@@ -7,10 +7,6 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        [HideInInspector] public Vector2 m_PlayerInput;
-        [HideInInspector] public Vector3 m_Velocity;
-        [HideInInspector] public Vector3 m_RootMotion;
-        
         [field: SerializeField, HideInInspector] public float GroundSpeed { get; private set; }
         [field: SerializeField, HideInInspector] public float AirSpeed { get; private set; }
         [field: SerializeField, HideInInspector] public float JumpHeight { get; private set; }
@@ -39,17 +35,17 @@ namespace State_Machine
         {
             foreach (PlayerBaseState state in _currentStates) state.UpdateState();
 
-            if (m_PlayerInput == Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
+            if (Player.Instance.m_PlayerMoveInput == Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerIdleState);
             }
-            if (m_PlayerInput != Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
+            if (Player.Instance.m_PlayerMoveInput != Vector2.zero && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerMoveState);
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
+            if (Player.Instance.m_PlayerJumpInput && !Player.Instance.m_IsJumping && !Player.Instance.m_IsFalling)
             {
                 _currentStates.Clear();
                 SwitchState(_playerJumpState);
@@ -61,7 +57,7 @@ namespace State_Machine
                 SwitchState(_playerFallingState);
                 SwitchState(_playerMoveState);
             }
-            if (Input.GetKeyDown(KeyCode.R) && !Player.Instance.m_IsFalling && !Player.Instance.m_IsJumping && !Player.Instance.m_IsReloading)
+            if (Player.Instance.m_PlayerReloadInput && !Player.Instance.m_IsFalling && !Player.Instance.m_IsJumping && !Player.Instance.m_IsReloading)
             {
                 _currentStates.Clear();
                 SwitchState(_playerReloadState);
@@ -81,7 +77,7 @@ namespace State_Machine
             state.EnterState(this);
         }
         
-        private void OnAnimatorMove() => m_RootMotion += Player.Instance.Animator.deltaPosition;
+        private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
 
         private void SetAnimationLayerWeight()
         {
@@ -99,8 +95,8 @@ namespace State_Machine
 
         public void SetInAir(float jumpVelocity)
         {
-            m_Velocity = Player.Instance.Animator.velocity * (JumpDamp * GroundSpeed);
-            m_Velocity.y = jumpVelocity;
+            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (JumpDamp * GroundSpeed);
+            Player.Instance.m_Velocity.y = jumpVelocity;
         }
     }
 }

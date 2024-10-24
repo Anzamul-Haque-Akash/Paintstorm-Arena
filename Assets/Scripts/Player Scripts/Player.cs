@@ -21,6 +21,11 @@ namespace Player_Scripts
         
         [field: SerializeField] public CinemachineVirtualCamera CinemachineVcCamera { get; private set; }
         
+        [ReadOnly] public Vector2 m_PlayerMoveInput;
+        [ReadOnly] public Vector3 m_Velocity;
+        [ReadOnly] public Vector3 m_RootMotion;
+        [ReadOnly] public bool m_PlayerJumpInput;
+        [ReadOnly] public bool m_PlayerReloadInput;
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;

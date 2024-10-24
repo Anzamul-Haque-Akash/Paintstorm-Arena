@@ -23,18 +23,18 @@ namespace State_Machine.States
 
             Player.Instance.CharacterController.Move(stepForwardAmount + stepDownAmunt);
 
-            _playerStateManager.m_RootMotion = Vector3.zero;
+            Player.Instance.m_RootMotion = Vector3.zero;
         }
 
         private Vector3 CalculateGroundMove()
         {
-            return _playerStateManager.m_RootMotion * _playerStateManager.GroundSpeed;
+            return Player.Instance.m_RootMotion * _playerStateManager.GroundSpeed;
         }
 
         private Vector3 CalculateAirMove()
         {
-            return ((_playerStateManager.transform.forward * _playerStateManager.m_PlayerInput.y) +
-                    (_playerStateManager.transform.right * _playerStateManager.m_PlayerInput.x)) *
+            return ((_playerStateManager.transform.forward * Player.Instance.m_PlayerMoveInput.y) +
+                    (_playerStateManager.transform.right * Player.Instance.m_PlayerMoveInput.x)) *
                    (_playerStateManager.AirSpeed / 100);
         }
     }
