@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Cinemachine;
 using Constants;
 using Player_Scripts;
 using State_Machine.States;
@@ -21,8 +20,6 @@ namespace State_Machine
         [HideInInspector] public Vector3 m_RootMotion;
         
         private List<PlayerBaseState> _currentStates;
-        private Cinemachine3rdPersonFollow _thirdPersonFollow;
-        private float _cameraOffset;
 
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
         private readonly PlayerMoveState _playerMoveState = new PlayerMoveState();
@@ -38,9 +35,6 @@ namespace State_Machine
             _currentStates = new List<PlayerBaseState>();
             _currentStates.Add(_playerIdleState);
             foreach (PlayerBaseState state in _currentStates) state.EnterState(this);
-            
-            _thirdPersonFollow = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-            _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
         }
 
         private void SpeedUp(bool flag)
@@ -86,7 +80,6 @@ namespace State_Machine
             }
 
             SetAnimationLayerWeight();
-            SetCrouchCameraOffset();
         }
 
         private void FixedUpdate()
@@ -119,14 +112,6 @@ namespace State_Machine
         {
             AnimatorWeight = Mathf.Lerp(AnimatorWeight, IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             Player.Instance.Animator.SetLayerWeight(1, AnimatorWeight);
-        }
-
-        private void SetCrouchCameraOffset()
-        {
-            float value = IsCrouching ? Player.Instance.PlayerData.m_CameraOffsetY.y : Player.Instance.PlayerData.m_CameraOffsetY.x;
-            
-            _cameraOffset = Mathf.Lerp(_cameraOffset, value, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
-            _thirdPersonFollow.ShoulderOffset.y = _cameraOffset;
         }
 
         public void SetInAir(float jumpVelocity)

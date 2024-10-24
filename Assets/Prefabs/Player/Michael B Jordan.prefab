@@ -2302,6 +2302,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6278136725433608165}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5017866867291228665}
   m_SourcePrefab: {fileID: 100100000, guid: f99b5bb02948b204aa616163316d53a8, type: 3}
 --- !u!4 &209364794615427111 stripped
 Transform:
@@ -2586,6 +2590,19 @@ MonoBehaviour:
   m_Spine1MultiAimConstraint: {fileID: 1697704247910645058}
   m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}
+--- !u!114 &5017866867291228665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231994007795615284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c643d6f1da8e4cdea3c0a233452a02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerStateManager: {fileID: 1518938830372778243}
 --- !u!4 &5903426549200495958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: f99b5bb02948b204aa616163316d53a8,
