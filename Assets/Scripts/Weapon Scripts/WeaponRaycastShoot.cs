@@ -1,3 +1,4 @@
+using Player_Scripts;
 using UnityEngine;
 
 namespace Weapon_Scripts
@@ -13,6 +14,11 @@ namespace Weapon_Scripts
         private Ray _ray;
         private RaycastHit _hitInfo;
         private Vector3 _direction;
+
+        private void Update()
+        {
+            if (Player.Instance.m_PlayerShootInput && !Player.Instance.m_IsReloading) Shoot();
+        }
 
         public void Shoot()
         {

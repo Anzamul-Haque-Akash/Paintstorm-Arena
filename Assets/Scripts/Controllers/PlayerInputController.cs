@@ -25,8 +25,11 @@ namespace Controllers
             Player.Instance.m_PlayerJumpInput = Input.GetKeyDown(KeyCode.Space);
             
             Player.Instance.m_PlayerReloadInput = Input.GetKeyDown(KeyCode.R);
+
+            Player.Instance.m_PlayerShootInput = Input.GetMouseButtonDown(0);
             
             m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
+            
         }
     }
 }

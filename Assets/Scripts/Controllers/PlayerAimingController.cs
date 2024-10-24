@@ -2,7 +2,6 @@ using Cinemachine;
 using Player_Scripts;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using Weapon_Scripts;
 
 namespace Controllers
 {
@@ -17,7 +16,6 @@ namespace Controllers
         [SerializeField] private MultiPositionConstraint m_WeaponMultiPositionConstraint;
 
         private Camera _mainCamera;
-        private WeaponRaycastShoot _weaponRaycastShoot;
         private bool _isZoomIn;
 
         private float _spineOffset;
@@ -36,9 +34,7 @@ namespace Controllers
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            _weaponRaycastShoot = GetComponentInChildren<WeaponRaycastShoot>();
-
+            
             _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffsetX = m_WeaponMultiPositionConstraint.data.offset.x;
@@ -61,8 +57,6 @@ namespace Controllers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !Player.Instance.m_IsReloading) _weaponRaycastShoot.Shoot();
-            
             CrouchAim(Input.GetKey(KeyCode.X) ? Player.Instance.PlayerData.m_CrouchAimOffsetY : Player.Instance.PlayerData.m_CrouchAimOffsetYDefault);
             
             if (Input.GetKey(KeyCode.E))
