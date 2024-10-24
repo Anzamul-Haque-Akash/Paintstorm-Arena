@@ -24,6 +24,8 @@ namespace SOs
         public Vector3 m_WeaponPosOffsetX;
         public Vector3 m_CameraOffsetX;
         public Vector2 m_CameraOffsetY;
+        public float m_CrouchAimOffsetYDefault;
+        public float m_CrouchAimOffsetY;
         public float m_LeanSpeed;
         public float m_ZoomInValue;
         public float m_ZoomOutValue;

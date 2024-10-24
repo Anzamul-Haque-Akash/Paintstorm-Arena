@@ -2582,7 +2582,7 @@ MonoBehaviour:
       m_RecenteringTime: 0
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
-  m_CmeraLookAt: {fileID: 7864765438568384277}
+  m_CameraLookAt: {fileID: 7864765438568384277}
   m_Spine1MultiAimConstraint: {fileID: 1697704247910645058}
   m_HeadMultiAimConstraint: {fileID: 3590667850073007147}
   m_WeaponMultiPositionConstraint: {fileID: 3958727259709926448}

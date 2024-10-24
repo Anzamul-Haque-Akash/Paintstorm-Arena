@@ -8,9 +8,9 @@ namespace Controllers
 {
     public class PlayerAimingController : MonoBehaviour
     {
-        public Cinemachine.AxisState m_Xaxis;
-        public Cinemachine.AxisState m_Yaxis;
-        public Transform m_CmeraLookAt;
+        public AxisState m_Xaxis;
+        public AxisState m_Yaxis;
+        public Transform m_CameraLookAt;
         
         [SerializeField] private MultiAimConstraint m_Spine1MultiAimConstraint;
         [SerializeField] private MultiAimConstraint m_HeadMultiAimConstraint;
@@ -22,7 +22,9 @@ namespace Controllers
 
         private float _spineOffset;
         private float _headOffset;
-        private float _weaponOffset;
+        private float _weaponOffsetX;
+        private float _weaponOffsetY;
+        private Vector3 _newOffset;
         private float _cameraOffset;
         private float _zoomOffset;
         private Cinemachine3rdPersonFollow _thirdPersonFollow;
@@ -39,7 +41,8 @@ namespace Controllers
 
             _spineOffset = m_Spine1MultiAimConstraint.data.offset.z;
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
-            _weaponOffset = m_WeaponMultiPositionConstraint.data.offset.x;
+            _weaponOffsetX = m_WeaponMultiPositionConstraint.data.offset.x;
+            _weaponOffsetY = m_WeaponMultiPositionConstraint.data.offset.y;
             _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
             _zoomOffset = _thirdPersonFollow.ShoulderOffset.z;
         }
@@ -48,7 +51,7 @@ namespace Controllers
         {
             m_Xaxis.Update(Time.fixedDeltaTime);
             m_Yaxis.Update(Time.fixedDeltaTime);
-            m_CmeraLookAt.eulerAngles = new Vector3(m_Yaxis.Value, m_Xaxis.Value, 0f);
+            m_CameraLookAt.eulerAngles = new Vector3(m_Yaxis.Value, m_Xaxis.Value, 0f);
             
             float yawCamera = _mainCamera.transform.eulerAngles.y;
 
@@ -60,50 +63,59 @@ namespace Controllers
         {
             if (Input.GetMouseButtonDown(0) && !Player.Instance.m_IsReloading) _weaponRaycastShoot.Shoot();
             
+            CrouchAim(Input.GetKey(KeyCode.X) ? Player.Instance.PlayerData.m_CrouchAimOffsetY : Player.Instance.PlayerData.m_CrouchAimOffsetYDefault);
+            
             if (Input.GetKey(KeyCode.E))
-                Lean(Player.Instance.PlayerData.m_SpineOffsetZ.z, Player.Instance.PlayerData.m_HeadOffsetZ.z,
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.z, Player.Instance.PlayerData.m_HeadOffsetZ.z,
                     Player.Instance.PlayerData.m_WeaponPosOffsetX.z, Player.Instance.PlayerData.m_CameraOffsetX.z);
             
             else if (Input.GetKey(KeyCode.Q))
-                Lean(Player.Instance.PlayerData.m_SpineOffsetZ.x, Player.Instance.PlayerData.m_HeadOffsetZ.x,
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.x, Player.Instance.PlayerData.m_HeadOffsetZ.x,
                     Player.Instance.PlayerData.m_WeaponPosOffsetX.x, Player.Instance.PlayerData.m_CameraOffsetX.x);
-            
             else
-                Lean(Player.Instance.PlayerData.m_SpineOffsetZ.y, Player.Instance.PlayerData.m_HeadOffsetZ.y,
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.y, Player.Instance.PlayerData.m_HeadOffsetZ.y, 
                     Player.Instance.PlayerData.m_WeaponPosOffsetX.y, Player.Instance.PlayerData.m_CameraOffsetX.y);
-            
-            
+
             _isZoomIn = Input.GetMouseButton(1);
             CameraZoom();
         }
 
-        private void Lean(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
+        private void LeanAim(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
-            Vector3 newOffset;
-
             MultiAimConstraintData constraintData = m_Spine1MultiAimConstraint.data;
             _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
-            newOffset = constraintData.offset;
-            newOffset.z = _spineOffset;
-            constraintData.offset = newOffset;
+            _newOffset = constraintData.offset;
+            _newOffset.z = _spineOffset;
+            constraintData.offset = _newOffset;
             m_Spine1MultiAimConstraint.data = constraintData;
 
             constraintData = m_HeadMultiAimConstraint.data;
             _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
-            newOffset = constraintData.offset;
-            newOffset.z = _headOffset;
-            constraintData.offset = newOffset;
+            _newOffset = constraintData.offset;
+            _newOffset.z = _headOffset;
+            constraintData.offset = _newOffset;
             m_HeadMultiAimConstraint.data = constraintData;
 
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffset = Mathf.Lerp(_weaponOffset, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
-            newOffset = posConstraintData.offset;
-            newOffset.x = _weaponOffset;
-            posConstraintData.offset = newOffset;
+            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _newOffset = posConstraintData.offset;
+            _newOffset.x = _weaponOffsetX;
+            posConstraintData.offset = _newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
             _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
+        }
+
+        private void CrouchAim(float weaponPosOffsetX)
+        {
+            MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
+            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _newOffset = posConstraintData.offset;
+            _newOffset.y = _weaponOffsetY;
+            posConstraintData.offset = _newOffset;
+            m_WeaponMultiPositionConstraint.data = posConstraintData;
+            
         }
 
         private void CameraZoom()
