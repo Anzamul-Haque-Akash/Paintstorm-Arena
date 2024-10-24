@@ -1,9 +1,8 @@
 using Cinemachine;
-using Player_Scripts;
 using State_Machine;
 using UnityEngine;
 
-namespace Camera_Script
+namespace Player_Scripts
 {
     public class PlayerCameraController : MonoBehaviour
     {
