@@ -28,8 +28,7 @@ namespace Controllers
         private void Start()
         {
             _mainCamera = Camera.main;
-            _thirdPersonFollow =
-                Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            _thirdPersonFollow = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -55,20 +54,18 @@ namespace Controllers
 
         private void Update()
         {
-            CrouchAim(Player.Instance.m_PlayerCrouchAimInput
-                ? Player.Instance.PlayerData.m_CrouchAimOffsetY
-                : Player.Instance.PlayerData.m_CrouchAimOffsetYDefault);
+            CrouchAim(Player.Instance.m_PlayerCrouchAimInput ? Player.Instance.PlayerData.m_CrouchAimOffsetY : Player.Instance.PlayerData.m_CrouchAimOffsetYDefault);
 
             if (Player.Instance.m_PlayerLeanRightAimInput)
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.z, Player.Instance.PlayerData.m_HeadOffsetZ.z,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetX.z, Player.Instance.PlayerData.m_CameraOffsetX.z);
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetRightZ, Player.Instance.PlayerData.m_HeadOffsetRightZ,
+                    Player.Instance.PlayerData.m_WeaponPosOffsetRightX, Player.Instance.PlayerData.m_CameraOffsetRightX);
 
             else if (Player.Instance.m_PlayerLeanLeftAimInput)
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.x, Player.Instance.PlayerData.m_HeadOffsetZ.x,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetX.x, Player.Instance.PlayerData.m_CameraOffsetX.x);
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetLeftZ, Player.Instance.PlayerData.m_HeadOffsetLeftZ,
+                    Player.Instance.PlayerData.m_WeaponPosOffsetLeftX, Player.Instance.PlayerData.m_CameraOffsetLeftX);
             else
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetZ.y, Player.Instance.PlayerData.m_HeadOffsetZ.y,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetX.y, Player.Instance.PlayerData.m_CameraOffsetX.y);
+                LeanAim(Player.Instance.PlayerData.m_SpineOffsetDefaultZ, Player.Instance.PlayerData.m_HeadOffsetDefaultZ,
+                    Player.Instance.PlayerData.m_WeaponPosOffsetDefaultX, Player.Instance.PlayerData.m_CameraOffsetDefaultX);
         }
 
         private void LeanAim(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
