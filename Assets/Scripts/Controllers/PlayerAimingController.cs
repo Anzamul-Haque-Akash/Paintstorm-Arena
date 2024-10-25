@@ -74,34 +74,34 @@ namespace Controllers
         private void LeanAim(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
             MultiAimConstraintData constraintData = m_Spine1MultiAimConstraint.data;
-            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
             _newOffset = constraintData.offset;
             _newOffset.z = _spineOffset;
             constraintData.offset = _newOffset;
             m_Spine1MultiAimConstraint.data = constraintData;
 
             constraintData = m_HeadMultiAimConstraint.data;
-            _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
             _newOffset = constraintData.offset;
             _newOffset.z = _headOffset;
             constraintData.offset = _newOffset;
             m_HeadMultiAimConstraint.data = constraintData;
 
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.x = _weaponOffsetX;
             posConstraintData.offset = _newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
-            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
             _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
         }
 
         private void CrouchAim(float weaponPosOffsetX)
         {
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_CrouchAimSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.y = _weaponOffsetY;
             posConstraintData.offset = _newOffset;

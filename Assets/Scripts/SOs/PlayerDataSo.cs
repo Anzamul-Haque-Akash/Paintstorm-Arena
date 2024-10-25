@@ -9,13 +9,13 @@ namespace SOs
         [Title("Player Move Data")] public float m_Gravity;
         public float m_GroundSpeed;
         public float m_GroundMaxSpeed;
+        public float m_CrouchSpeed;
         public float m_JumpHeight;
         public float m_JumpMaxHeight;
         public float m_JumpDamp;
         public float m_MaxJumpDamp;
         public float m_AirSpeed;
         public float m_AirMaxSpeed;
-        public float m_CrouchSpeed;
         public float m_StepDown;
 
         [Space] [Title("Player Aiming Data")] public float m_TurnSpeed;
@@ -24,9 +24,10 @@ namespace SOs
         public Vector3 m_WeaponPosOffsetX;
         public Vector3 m_CameraOffsetX;
         public Vector2 m_CameraOffsetY;
+        public float m_LeanAimSpeed;
         public float m_CrouchAimOffsetYDefault;
         public float m_CrouchAimOffsetY;
-        public float m_LeanSpeed;
+        public float m_CrouchAimSpeed;
         public float m_ZoomInValue;
         public float m_ZoomOutValue;
         public float m_ZoomInAndOutSpeed;
