@@ -2310,6 +2310,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3380931188086075126}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f99b5bb02948b204aa616163316d53a8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985629730911621561}
   m_SourcePrefab: {fileID: 100100000, guid: f99b5bb02948b204aa616163316d53a8, type: 3}
 --- !u!4 &209364794615427111 stripped
 Transform:
@@ -2506,9 +2510,26 @@ MonoBehaviour:
   <BodyPod>k__BackingField: {fileID: 5156866719590976112}
   <HandPod>k__BackingField: {fileID: 4471483912588876778}
   <CinemachineVcCamera>k__BackingField: {fileID: 1130479757886702262}
+  m_PlayerMoveInput: {x: 0, y: 0}
+  m_PlayerJumpInput: 0
+  m_PlayerReloadInput: 0
+  m_PlayerShootInput: 0
+  m_PlayerCrouchAimInput: 0
+  m_PlayerLeanRightAimInput: 0
+  m_PlayerLeanLeftAimInput: 0
   m_IsJumping: 0
   m_IsFalling: 0
   m_IsReloading: 0
+  m_IsCrouching: 0
+  m_IsSpeedUp: 0
+  m_IsCameraZoomIn: 0
+  m_Velocity: {x: 0, y: 0, z: 0}
+  m_RootMotion: {x: 0, y: 0, z: 0}
+  m_AnimatorWeight: 0
+  m_GroundSpeed: 0
+  m_AirSpeed: 0
+  m_JumpHeight: 0
+  m_JumpDamp: 0
 --- !u!114 &1518938830372778243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,15 +2542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a8a7279399fcc4ea3877e73da7e3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerInput: {x: 0, y: 0}
-  m_Velocity: {x: 0, y: 0, z: 0}
-  m_RootMotion: {x: 0, y: 0, z: 0}
-  m_IsCrouching: 0
-  <GroundSpeed>k__BackingField: 0
-  <AirSpeed>k__BackingField: 0
-  <JumpHeight>k__BackingField: 0
-  <JumpDamp>k__BackingField: 0
-  <AnimatorWeight>k__BackingField: 0
 --- !u!114 &8449628060009473786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2542,7 +2554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce76207802f8940a2836530937908e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerStateManager: {fileID: 1518938830372778243}
 --- !u!114 &6278136725433608165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,7 +2618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c643d6f1da8e4cdea3c0a233452a02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerStateManager: {fileID: 1518938830372778243}
 --- !u!114 &3380931188086075126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2618,6 +2628,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb219c73c585416f9bd984bcb9115a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1985629730911621561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231994007795615284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d95486e5ebc74ff6b840745ce48d901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &5903426549200495958 stripped
