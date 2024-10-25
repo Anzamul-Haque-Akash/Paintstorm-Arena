@@ -67,13 +67,5 @@ namespace State_Machine
             _currentStates.Add(state);
             state.EnterState(this);
         }
-        
-        private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
-
-        public void SetInAir(float jumpVelocity)
-        {
-            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (Player.Instance.m_JumpDamp * Player.Instance.m_GroundSpeed);
-            Player.Instance.m_Velocity.y = jumpVelocity;
-        }
     }
 }

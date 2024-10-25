@@ -40,8 +40,8 @@ namespace State_Machine.States
                     (_playerStateManager.transform.right * Player.Instance.m_PlayerMoveInput.x)) *
                    (Player.Instance.m_AirSpeed / 100);
         }
-        
-        public void SpeedUp(bool flag)
+
+        private void SpeedUp(bool flag)
         {
             Player.Instance.m_GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
             Player.Instance.m_JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;

@@ -22,6 +22,7 @@ namespace Player_Scripts
         [ReadOnly] public Vector2 m_PlayerMoveInput;
         [ReadOnly] public Vector3 m_Velocity;
         [ReadOnly] public Vector3 m_RootMotion;
+        
         [ReadOnly] public bool m_PlayerJumpInput;
         [ReadOnly] public bool m_PlayerReloadInput;
         [ReadOnly] public bool m_PlayerShootInput;
@@ -32,13 +33,14 @@ namespace Player_Scripts
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;
         [ReadOnly] public bool m_IsCrouching;
+        [ReadOnly] public bool m_SpeedUp;
         [ReadOnly] public bool m_IsCameraZoomIn;
+
         [ReadOnly] public float m_AnimatorWeight;
         [ReadOnly] public float m_GroundSpeed;
         [ReadOnly] public float m_AirSpeed;
         [ReadOnly] public float m_JumpHeight;
         [ReadOnly] public float m_JumpDamp;
-        [ReadOnly] public bool m_SpeedUp;
         
         private void Awake() => Instance = this;
     }

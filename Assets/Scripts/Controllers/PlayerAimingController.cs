@@ -74,8 +74,7 @@ namespace Controllers
         private void LeanAim(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
             MultiAimConstraintData constraintData = m_Spine1MultiAimConstraint.data;
-            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ,
-                Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _newOffset = constraintData.offset;
             _newOffset.z = _spineOffset;
             constraintData.offset = _newOffset;
@@ -89,23 +88,20 @@ namespace Controllers
             m_HeadMultiAimConstraint.data = constraintData;
 
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX,
-                Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.x = _weaponOffsetX;
             posConstraintData.offset = _newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
-            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX,
-                Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
         }
 
         private void CrouchAim(float weaponPosOffsetX)
         {
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX,
-                Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
+            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.y = _weaponOffsetY;
             posConstraintData.offset = _newOffset;

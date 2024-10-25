@@ -20,7 +20,7 @@ namespace State_Machine.States
             switch (Player.Instance.CharacterController.isGrounded)
             {
                 case false:
-                    _playerStateManager.SetInAir(0f);
+                    PlayerFalling();
                     Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, true);
                     break;
                 case true:
@@ -28,6 +28,12 @@ namespace State_Machine.States
                     Player.Instance.m_IsFalling = false;
                     break;
             }
+        }
+
+        private void PlayerFalling()
+        {
+            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (Player.Instance.m_JumpDamp * Player.Instance.m_GroundSpeed);
+            Player.Instance.m_Velocity.y = 0;
         }
     }
 }

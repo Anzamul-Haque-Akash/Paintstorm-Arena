@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -9,6 +8,8 @@ namespace Player_Scripts
         {
             SetAnimationLayerWeight();
         }
+        
+        private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
 
         private void SetAnimationLayerWeight()
         {

@@ -15,8 +15,8 @@ namespace State_Machine.States
 
         private void UpdateOnGround()
         {
-            Vector3 stepDownAmunt = Vector3.down * Player.Instance.PlayerData.m_StepDown;
-            Player.Instance.CharacterController.Move(stepDownAmunt);
+            Vector3 stepDownAmount = Vector3.down * Player.Instance.PlayerData.m_StepDown;
+            Player.Instance.CharacterController.Move(stepDownAmount);
             Player.Instance.m_RootMotion = Vector3.zero;
         }
     }

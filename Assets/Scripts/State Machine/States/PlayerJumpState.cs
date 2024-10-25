@@ -25,7 +25,7 @@ namespace State_Machine.States
         private void Jump()
         {
             float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * Player.Instance.m_JumpHeight);
-            _playerStateManager.SetInAir(jumpVelocity);
+            SetInAir(jumpVelocity);
             Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, true);
         }
         
@@ -36,6 +36,12 @@ namespace State_Machine.States
             Player.Instance.CharacterController.Move(displacement);
             Player.Instance.m_IsJumping = !Player.Instance.CharacterController.isGrounded;
             Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, Player.Instance.m_IsJumping);
+        }
+
+        private void SetInAir(float jumpVelocity)
+        {
+            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (Player.Instance.m_JumpDamp * Player.Instance.m_GroundSpeed);
+            Player.Instance.m_Velocity.y = jumpVelocity;
         }
     }
 }
