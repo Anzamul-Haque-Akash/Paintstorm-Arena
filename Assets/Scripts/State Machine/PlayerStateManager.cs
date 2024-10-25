@@ -7,11 +7,6 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        [field: SerializeField, HideInInspector] public float GroundSpeed { get; private set; }
-        [field: SerializeField, HideInInspector] public float AirSpeed { get; private set; }
-        [field: SerializeField, HideInInspector] public float JumpHeight { get; private set; }
-        [field: SerializeField, HideInInspector] public float JumpDamp { get; private set; }
-        [field: SerializeField, HideInInspector] public float AnimatorWeight { get; private set; }
         
         private List<PlayerBaseState> _currentStates;
 
@@ -62,8 +57,6 @@ namespace State_Machine
                 _currentStates.Clear();
                 SwitchState(_playerReloadState);
             }
-
-            SetAnimationLayerWeight();
         }
 
         private void FixedUpdate()
@@ -78,24 +71,18 @@ namespace State_Machine
         }
         
         private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
-
-        private void SetAnimationLayerWeight()
-        {
-            AnimatorWeight = Mathf.Lerp(AnimatorWeight, Player.Instance.m_IsCrouching ? 1 : 0, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
-            Player.Instance.Animator.SetLayerWeight(1, AnimatorWeight);
-        }
         
         public void SpeedUp(bool flag)
         {
-            GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
-            JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
-            AirSpeed = flag ? Player.Instance.PlayerData.m_AirMaxSpeed : Player.Instance.PlayerData.m_AirSpeed;
-            JumpHeight = flag ? Player.Instance.PlayerData.m_JumpMaxHeight : Player.Instance.PlayerData.m_JumpHeight;
+            Player.Instance.m_GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
+            Player.Instance.m_JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
+            Player.Instance.m_AirSpeed = flag ? Player.Instance.PlayerData.m_AirMaxSpeed : Player.Instance.PlayerData.m_AirSpeed;
+            Player.Instance.m_JumpHeight = flag ? Player.Instance.PlayerData.m_JumpMaxHeight : Player.Instance.PlayerData.m_JumpHeight;
         }
 
         public void SetInAir(float jumpVelocity)
         {
-            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (JumpDamp * GroundSpeed);
+            Player.Instance.m_Velocity = Player.Instance.Animator.velocity * (Player.Instance.m_JumpDamp * Player.Instance.m_GroundSpeed);
             Player.Instance.m_Velocity.y = jumpVelocity;
         }
     }

@@ -24,7 +24,7 @@ namespace State_Machine.States
         
         private void Jump()
         {
-            float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * _playerStateManager.JumpHeight);
+            float jumpVelocity = Mathf.Sqrt(2f * Player.Instance.PlayerData.m_Gravity * Player.Instance.m_JumpHeight);
             _playerStateManager.SetInAir(jumpVelocity);
             Player.Instance.Animator.SetBool(AnimatorHashes.IsJumping, true);
         }

@@ -28,14 +28,14 @@ namespace State_Machine.States
 
         private Vector3 CalculateGroundMove()
         {
-            return Player.Instance.m_RootMotion * _playerStateManager.GroundSpeed;
+            return Player.Instance.m_RootMotion * Player.Instance.m_GroundSpeed;
         }
 
         private Vector3 CalculateAirMove()
         {
             return ((_playerStateManager.transform.forward * Player.Instance.m_PlayerMoveInput.y) +
                     (_playerStateManager.transform.right * Player.Instance.m_PlayerMoveInput.x)) *
-                   (_playerStateManager.AirSpeed / 100);
+                   (Player.Instance.m_AirSpeed / 100);
         }
     }
 }

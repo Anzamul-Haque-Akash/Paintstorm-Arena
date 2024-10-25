@@ -33,6 +33,11 @@ namespace Player_Scripts
         [ReadOnly] public bool m_IsReloading;
         [ReadOnly] public bool m_IsCrouching;
         [ReadOnly] public bool m_IsCameraZoomIn;
+        [ReadOnly] public float m_AnimatorWeight;
+        [ReadOnly] public float m_GroundSpeed;
+        [ReadOnly] public float m_AirSpeed;
+        [ReadOnly] public float m_JumpHeight;
+        [ReadOnly] public float m_JumpDamp;
         
         private void Awake() => Instance = this;
     }
