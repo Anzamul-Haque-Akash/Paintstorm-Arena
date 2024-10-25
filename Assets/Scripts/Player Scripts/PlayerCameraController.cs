@@ -1,13 +1,10 @@
 using Cinemachine;
-using State_Machine;
 using UnityEngine;
 
 namespace Player_Scripts
 {
     public class PlayerCameraController : MonoBehaviour
     {
-        [SerializeField] private PlayerStateManager m_PlayerStateManager;
-        
         private Cinemachine3rdPersonFollow _thirdPersonFollow;
         private float _cameraOffset;
         private float _zoomOffset;

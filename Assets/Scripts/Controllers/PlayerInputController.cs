@@ -28,7 +28,7 @@ namespace Controllers
             Player.Instance.m_PlayerLeanRightAimInput = Input.GetKey(KeyCode.E);
             Player.Instance.m_PlayerLeanLeftAimInput = Input.GetKey(KeyCode.Q);
 
-            Player.Instance.m_SpeedUp = Input.GetKey(KeyCode.LeftShift);
+            Player.Instance.m_IsSpeedUp = Input.GetKey(KeyCode.LeftShift);
 
             Player.Instance.m_IsCameraZoomIn = Input.GetMouseButton(1);
         }

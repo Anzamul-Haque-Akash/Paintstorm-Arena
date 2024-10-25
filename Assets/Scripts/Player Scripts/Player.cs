@@ -9,7 +9,7 @@ namespace Player_Scripts
     public class Player : MonoBehaviour
     {
         public static Player Instance;
-
+        
         [field: SerializeField] public PlayerDataSo PlayerData { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
@@ -19,23 +19,26 @@ namespace Player_Scripts
         [field: SerializeField] public GameObject HandPod { get; private set; }
         [field: SerializeField] public CinemachineVirtualCamera CinemachineVcCamera { get; private set; }
         
+        [Header("Player Inputs"), BoxGroup]
         [ReadOnly] public Vector2 m_PlayerMoveInput;
-        [ReadOnly] public Vector3 m_Velocity;
-        [ReadOnly] public Vector3 m_RootMotion;
-        
         [ReadOnly] public bool m_PlayerJumpInput;
         [ReadOnly] public bool m_PlayerReloadInput;
         [ReadOnly] public bool m_PlayerShootInput;
         [ReadOnly] public bool m_PlayerCrouchAimInput;
         [ReadOnly] public bool m_PlayerLeanRightAimInput;
         [ReadOnly] public bool m_PlayerLeanLeftAimInput;
+        
+        [Header("Player States"), BoxGroup]
         [ReadOnly] public bool m_IsJumping;
         [ReadOnly] public bool m_IsFalling;
         [ReadOnly] public bool m_IsReloading;
         [ReadOnly] public bool m_IsCrouching;
-        [ReadOnly] public bool m_SpeedUp;
+        [ReadOnly] public bool m_IsSpeedUp;
         [ReadOnly] public bool m_IsCameraZoomIn;
 
+        [Header("Player Changeable Data"), BoxGroup]
+        [ReadOnly] public Vector3 m_Velocity;
+        [ReadOnly] public Vector3 m_RootMotion;
         [ReadOnly] public float m_AnimatorWeight;
         [ReadOnly] public float m_GroundSpeed;
         [ReadOnly] public float m_AirSpeed;

@@ -11,7 +11,7 @@ namespace State_Machine.States
 
         public override void UpdateState()
         {
-            SpeedUp(Player.Instance.m_SpeedUp);
+            SpeedUp(Player.Instance.m_IsSpeedUp);
         }
 
         public override void FixedUpdateState() => UpdateOnGround();

@@ -6,11 +6,11 @@ namespace SOs
     [CreateAssetMenu(fileName = "PlayerData", menuName = "Data/PlayerData")]
     public class PlayerDataSo : ScriptableObject
     {
-        [Title("Player Move Data")] 
+        [Title("Player Move Data"), BoxGroup] 
         public float m_GroundSpeed;
         public float m_GroundMaxSpeed;
         public float m_CrouchSpeed;
-        [Title("Player Jump And Air Data")] 
+        [Title("Player Jump And Air Data"), BoxGroup] 
         public float m_JumpHeight;
         public float m_JumpMaxHeight;
         public float m_JumpDamp;
@@ -20,7 +20,7 @@ namespace SOs
         public float m_Gravity;
         public float m_StepDown;
         
-        [Header("Player Lean Aim Data")]
+        [Header("Player Lean Aim Data"), BoxGroup]
         public float m_SpineOffsetDefaultZ;
         public float m_SpineOffsetLeftZ;
         public float m_SpineOffsetRightZ;
@@ -37,18 +37,18 @@ namespace SOs
         public float m_CameraOffsetLeftX;
         public float m_CameraOffsetRightX;
    
-        [Header("Player Crouch Aim Data")]
+        [Header("Player Crouch Aim Data"), BoxGroup]
         public float m_CameraOffsetDefaultY;
         public float m_CameraOffsetCouchY;
         [Space]
         public float m_CrouchAimOffsetYDefault;
         public float m_CrouchAimOffsetY;
         
-        [Header("Player Camera Zoom IN and OUT Data")]
+        [Header("Player Camera Zoom IN and OUT Data"), BoxGroup]
         public float m_ZoomInValue;
         public float m_ZoomOutValue;
         
-        [Space] [Title("Player Aiming Data")] 
+        [Space] [Title("Player Aiming Data"), BoxGroup] 
         public float m_TurnSpeed;
         public float m_LeanAimSpeed;
         public float m_CrouchAimSpeed;

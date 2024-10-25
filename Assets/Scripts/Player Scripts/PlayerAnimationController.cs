@@ -4,10 +4,7 @@ namespace Player_Scripts
 {
     public class PlayerAnimationController : MonoBehaviour
     {
-        private void Update()
-        {
-            SetAnimationLayerWeight();
-        }
+        private void Update() => SetAnimationLayerWeight();
         
         private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
 
