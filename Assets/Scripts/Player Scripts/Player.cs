@@ -38,6 +38,7 @@ namespace Player_Scripts
         [ReadOnly] public float m_AirSpeed;
         [ReadOnly] public float m_JumpHeight;
         [ReadOnly] public float m_JumpDamp;
+        [ReadOnly] public bool m_SpeedUp;
         
         private void Awake() => Instance = this;
     }

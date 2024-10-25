@@ -7,7 +7,6 @@ namespace State_Machine
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        
         private List<PlayerBaseState> _currentStates;
 
         private readonly PlayerIdleState _playerIdleState = new PlayerIdleState();
@@ -18,7 +17,6 @@ namespace State_Machine
         
         private void Start()
         {
-            SpeedUp(false);
             Player.Instance.HandPod.SetActive(false);
 
             _currentStates = new List<PlayerBaseState>();
@@ -71,14 +69,6 @@ namespace State_Machine
         }
         
         private void OnAnimatorMove() => Player.Instance.m_RootMotion += Player.Instance.Animator.deltaPosition;
-        
-        public void SpeedUp(bool flag)
-        {
-            Player.Instance.m_GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
-            Player.Instance.m_JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
-            Player.Instance.m_AirSpeed = flag ? Player.Instance.PlayerData.m_AirMaxSpeed : Player.Instance.PlayerData.m_AirSpeed;
-            Player.Instance.m_JumpHeight = flag ? Player.Instance.PlayerData.m_JumpMaxHeight : Player.Instance.PlayerData.m_JumpHeight;
-        }
 
         public void SetInAir(float jumpVelocity)
         {

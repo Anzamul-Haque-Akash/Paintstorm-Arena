@@ -9,7 +9,10 @@ namespace State_Machine.States
 
         public override void EnterState(PlayerStateManager playerStateManager) => _playerStateManager = playerStateManager;
 
-        public override void UpdateState() { }
+        public override void UpdateState()
+        {
+            SpeedUp(Player.Instance.m_SpeedUp);
+        }
 
         public override void FixedUpdateState() => UpdateOnGround();
 
@@ -36,6 +39,14 @@ namespace State_Machine.States
             return ((_playerStateManager.transform.forward * Player.Instance.m_PlayerMoveInput.y) +
                     (_playerStateManager.transform.right * Player.Instance.m_PlayerMoveInput.x)) *
                    (Player.Instance.m_AirSpeed / 100);
+        }
+        
+        public void SpeedUp(bool flag)
+        {
+            Player.Instance.m_GroundSpeed = flag ? Player.Instance.PlayerData.m_GroundMaxSpeed : Player.Instance.PlayerData.m_GroundSpeed;
+            Player.Instance.m_JumpDamp = flag ? Player.Instance.PlayerData.m_MaxJumpDamp : Player.Instance.PlayerData.m_JumpDamp;
+            Player.Instance.m_AirSpeed = flag ? Player.Instance.PlayerData.m_AirMaxSpeed : Player.Instance.PlayerData.m_AirSpeed;
+            Player.Instance.m_JumpHeight = flag ? Player.Instance.PlayerData.m_JumpMaxHeight : Player.Instance.PlayerData.m_JumpHeight;
         }
     }
 }

@@ -1,14 +1,11 @@
 using Constants;
 using Player_Scripts;
-using State_Machine;
 using UnityEngine;
 
 namespace Controllers
 {
     public class PlayerInputController : MonoBehaviour
     {
-        [SerializeField] private PlayerStateManager m_PlayerStateManager;
-
         private void Update() => GetInput();
 
         private void GetInput()
@@ -31,7 +28,7 @@ namespace Controllers
             Player.Instance.m_PlayerLeanRightAimInput = Input.GetKey(KeyCode.E);
             Player.Instance.m_PlayerLeanLeftAimInput = Input.GetKey(KeyCode.Q);
 
-            m_PlayerStateManager.SpeedUp(Input.GetKey(KeyCode.LeftShift));
+            Player.Instance.m_SpeedUp = Input.GetKey(KeyCode.LeftShift);
             
             Player.Instance.m_IsCameraZoomIn = Input.GetMouseButton(1);
         }
