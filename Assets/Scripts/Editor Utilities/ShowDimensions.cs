@@ -30,7 +30,7 @@ namespace Editor_Utilities
                 textStyle.fontStyle = FontStyle.Bold; 
                 
                 Vector3 labelPosition = _collider.bounds.center;
-                Handles.Label(labelPosition, $"{_width:F2} / {_height:F2} / {_depth:F2}", textStyle);
+                Handles.Label(labelPosition, $"{gameObject.name} : {_width:F2} / {_height:F2} / {_depth:F2}", textStyle);
                 
                 
             }
