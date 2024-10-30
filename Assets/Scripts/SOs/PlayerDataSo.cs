@@ -54,6 +54,5 @@ namespace SOs
         public float m_LeanAimSpeed;
         public float m_CrouchAimSpeed;
         public float m_ZoomInAndOutSpeed;
-        
     }
 }
