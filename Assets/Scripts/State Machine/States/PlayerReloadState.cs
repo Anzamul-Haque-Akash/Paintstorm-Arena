@@ -55,6 +55,7 @@ namespace State_Machine.States
         private void ReloadComplete()
         {
             Player.Instance.m_IsReloading = false;
+            Player.Instance.BodyPod.SetActive(true);
         }
     }
 }
