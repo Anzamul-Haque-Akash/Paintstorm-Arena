@@ -61,13 +61,13 @@ namespace Controllers
         {
             if (Player.Instance.m_PlayerHandUpAimInput)
             {
-                if (Player.Instance.m_IsCrouching) HandUpAim(_playerDataSo.m_HandUpAimOffsetY, _playerDataSo.m_CameraOffsetCrouchY);
-                else HandUpAim(_playerDataSo.m_HandUpAimOffsetY, _playerDataSo.m_CameraOffsetY);
+                HandUpAim(_playerDataSo.m_HandUpAimOffsetY, 
+                    Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchY : _playerDataSo.m_CameraOffsetY);
             }
             else
             {
-                if (Player.Instance.m_IsCrouching) HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, _playerDataSo.m_CameraOffsetCrouchDefaultY);
-                else HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, _playerDataSo.m_CameraOffsetDefaultY);
+                HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, 
+                    Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchDefaultY : _playerDataSo.m_CameraOffsetDefaultY);
             }
 
             
