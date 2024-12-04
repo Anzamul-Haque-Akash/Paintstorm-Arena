@@ -1,5 +1,6 @@
 using Cinemachine;
 using Player_Scripts;
+using SOs;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -22,13 +23,16 @@ namespace Controllers
         private float _weaponOffsetX;
         private float _weaponOffsetY;
         private Vector3 _newOffset;
-        private float _cameraOffset;
-        private Cinemachine3rdPersonFollow _thirdPersonFollow;
+        private float _cameraOffsetX;
+        private float _cameraOffsetY;
+        private Cinemachine3rdPersonFollow _thirdPersonFollowCamera;
+        private PlayerDataSo _playerDataSo;
 
         private void Start()
         {
             _mainCamera = Camera.main;
-            _thirdPersonFollow = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            _thirdPersonFollowCamera = Player.Instance.CinemachineVcCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            _playerDataSo = Player.Instance.PlayerData;
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -37,7 +41,8 @@ namespace Controllers
             _headOffset = m_HeadMultiAimConstraint.data.offset.z;
             _weaponOffsetX = m_WeaponMultiPositionConstraint.data.offset.x;
             _weaponOffsetY = m_WeaponMultiPositionConstraint.data.offset.y;
-            _cameraOffset = _thirdPersonFollow.ShoulderOffset.x;
+            _cameraOffsetX = _thirdPersonFollowCamera.ShoulderOffset.x;
+            _cameraOffsetY = _thirdPersonFollowCamera.ShoulderOffset.y;
         }
 
         private void FixedUpdate()
@@ -49,60 +54,71 @@ namespace Controllers
             float yawCamera = _mainCamera.transform.eulerAngles.y;
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, yawCamera, 0f),
-                Player.Instance.PlayerData.m_TurnSpeed * Time.fixedDeltaTime);
+                _playerDataSo.m_TurnSpeed * Time.fixedDeltaTime);
         }
 
         private void Update()
         {
-            CrouchAim(Player.Instance.m_PlayerCrouchAimInput ? Player.Instance.PlayerData.m_CrouchAimOffsetY : Player.Instance.PlayerData.m_CrouchAimOffsetYDefault);
+            if (Player.Instance.m_PlayerHandUpAimInput)
+            {
+                if (Player.Instance.m_IsCrouching) HandUpAim(_playerDataSo.m_HandUpAimOffsetY, _playerDataSo.m_CameraOffsetCrouchY);
+                else HandUpAim(_playerDataSo.m_HandUpAimOffsetY, _playerDataSo.m_CameraOffsetY);
+            }
+            else
+            {
+                if (Player.Instance.m_IsCrouching) HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, _playerDataSo.m_CameraOffsetCrouchDefaultY);
+                else HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, _playerDataSo.m_CameraOffsetDefaultY);
+            }
 
+            
             if (Player.Instance.m_PlayerLeanRightAimInput)
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetRightZ, Player.Instance.PlayerData.m_HeadOffsetRightZ,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetRightX, Player.Instance.PlayerData.m_CameraOffsetRightX);
+                LeanAim(_playerDataSo.m_SpineOffsetRightZ, _playerDataSo.m_HeadOffsetRightZ, _playerDataSo.m_WeaponPosOffsetRightX, _playerDataSo.m_CameraOffsetRightX);
 
             else if (Player.Instance.m_PlayerLeanLeftAimInput)
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetLeftZ, Player.Instance.PlayerData.m_HeadOffsetLeftZ,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetLeftX, Player.Instance.PlayerData.m_CameraOffsetLeftX);
+                LeanAim(_playerDataSo.m_SpineOffsetLeftZ, _playerDataSo.m_HeadOffsetLeftZ, _playerDataSo.m_WeaponPosOffsetLeftX, _playerDataSo.m_CameraOffsetLeftX);
             else
-                LeanAim(Player.Instance.PlayerData.m_SpineOffsetDefaultZ, Player.Instance.PlayerData.m_HeadOffsetDefaultZ,
-                    Player.Instance.PlayerData.m_WeaponPosOffsetDefaultX, Player.Instance.PlayerData.m_CameraOffsetDefaultX);
+                LeanAim(_playerDataSo.m_SpineOffsetDefaultZ, _playerDataSo.m_HeadOffsetDefaultZ, _playerDataSo.m_WeaponPosOffsetDefaultX, _playerDataSo.m_CameraOffsetDefaultX);
         }
 
         private void LeanAim(float spineOffsetZ, float headOffsetZ, float weaponPosOffsetX, float cameraOffsetX)
         {
             MultiAimConstraintData constraintData = m_Spine1MultiAimConstraint.data;
-            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
+            _spineOffset = Mathf.Lerp(_spineOffset, spineOffsetZ, Time.deltaTime * _playerDataSo.m_AimSpeed);
             _newOffset = constraintData.offset;
             _newOffset.z = _spineOffset;
             constraintData.offset = _newOffset;
             m_Spine1MultiAimConstraint.data = constraintData;
 
             constraintData = m_HeadMultiAimConstraint.data;
-            _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
+            _headOffset = Mathf.Lerp(_headOffset, headOffsetZ, Time.deltaTime * _playerDataSo.m_AimSpeed);
             _newOffset = constraintData.offset;
             _newOffset.z = _headOffset;
             constraintData.offset = _newOffset;
             m_HeadMultiAimConstraint.data = constraintData;
 
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
+            _weaponOffsetX = Mathf.Lerp(_weaponOffsetX, weaponPosOffsetX,Time.deltaTime * _playerDataSo.m_AimSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.x = _weaponOffsetX;
             posConstraintData.offset = _newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
 
-            _cameraOffset = Mathf.Lerp(_cameraOffset, cameraOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_LeanAimSpeed);
-            _thirdPersonFollow.ShoulderOffset.x = _cameraOffset;
+            _cameraOffsetX = Mathf.Lerp(_cameraOffsetX, cameraOffsetX, Time.deltaTime * _playerDataSo.m_AimSpeed);
+            _thirdPersonFollowCamera.ShoulderOffset.x = _cameraOffsetX;
         }
 
-        private void CrouchAim(float weaponPosOffsetX)
+        private void HandUpAim(float weaponPosOffsetX, float cameraOffsetY)
         {
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * Player.Instance.PlayerData.m_CrouchAimSpeed);
+            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX,
+                Time.deltaTime * _playerDataSo.m_AimSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.y = _weaponOffsetY;
             posConstraintData.offset = _newOffset;
             m_WeaponMultiPositionConstraint.data = posConstraintData;
+            
+            _cameraOffsetY = Mathf.Lerp(_cameraOffsetY, cameraOffsetY, Time.deltaTime * _playerDataSo.m_AimSpeed);
+            _thirdPersonFollowCamera.ShoulderOffset.y = _cameraOffsetY;
         }
     }
 }

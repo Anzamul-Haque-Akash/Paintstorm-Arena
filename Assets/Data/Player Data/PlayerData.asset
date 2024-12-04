@@ -36,12 +36,13 @@ MonoBehaviour:
   m_CameraOffsetLeftX: -0.42
   m_CameraOffsetRightX: 0.45
   m_CameraOffsetDefaultY: -0.56
-  m_CameraOffsetCouchY: -1.06
-  m_CrouchAimOffsetYDefault: 0.12
-  m_CrouchAimOffsetY: 0.35
+  m_CameraOffsetY: -0.3
+  m_CameraOffsetCrouchDefaultY: -1.05
+  m_CameraOffsetCrouchY: -0.8
+  m_HandUpAimOffsetDefaultY: 0.12
+  m_HandUpAimOffsetY: 0.35
   m_ZoomInValue: 1
   m_ZoomOutValue: 3
   m_TurnSpeed: 15
-  m_LeanAimSpeed: 12
-  m_CrouchAimSpeed: 12
+  m_AimSpeed: 12
   m_ZoomInAndOutSpeed: 25

@@ -23,7 +23,7 @@ namespace Controllers
 
             Player.Instance.m_PlayerShootInput = Input.GetMouseButtonDown(0);
 
-            Player.Instance.m_PlayerCrouchAimInput = Input.GetKey(KeyCode.X);
+            Player.Instance.m_PlayerHandUpAimInput = Input.GetKey(KeyCode.X);
 
             Player.Instance.m_PlayerLeanRightAimInput = Input.GetKey(KeyCode.E);
             Player.Instance.m_PlayerLeanLeftAimInput = Input.GetKey(KeyCode.Q);

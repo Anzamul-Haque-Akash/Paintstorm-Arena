@@ -24,7 +24,7 @@ namespace Player_Scripts
         [ReadOnly] public bool m_PlayerJumpInput;
         [ReadOnly] public bool m_PlayerReloadInput;
         [ReadOnly] public bool m_PlayerShootInput;
-        [ReadOnly] public bool m_PlayerCrouchAimInput;
+        [ReadOnly] public bool m_PlayerHandUpAimInput;
         [ReadOnly] public bool m_PlayerLeanRightAimInput;
         [ReadOnly] public bool m_PlayerLeanLeftAimInput;
         

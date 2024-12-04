@@ -38,12 +38,15 @@ namespace SOs
         public float m_CameraOffsetLeftX;
         public float m_CameraOffsetRightX;
    
-        [Header("Player Crouch Aim Data")]
+        [Header("Player Hand Up Aim Data")]
         public float m_CameraOffsetDefaultY;
-        public float m_CameraOffsetCouchY;
+        public float m_CameraOffsetY;
         [Space]
-        public float m_CrouchAimOffsetYDefault;
-        public float m_CrouchAimOffsetY;
+        public float m_CameraOffsetCrouchDefaultY;
+        public float m_CameraOffsetCrouchY;
+        [Space]
+        public float m_HandUpAimOffsetDefaultY;
+        public float m_HandUpAimOffsetY;
         
         [Header("Player Camera Zoom IN and OUT Data")]
         public float m_ZoomInValue;
@@ -51,8 +54,7 @@ namespace SOs
         
         [Space] [Title("Player Aiming Data")] 
         public float m_TurnSpeed;
-        public float m_LeanAimSpeed;
-        public float m_CrouchAimSpeed;
+        public float m_AimSpeed;
         public float m_ZoomInAndOutSpeed;
     }
 }

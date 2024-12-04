@@ -24,7 +24,7 @@ namespace Player_Scripts
 
         private void SetCrouchCameraOffset()
         {
-            float value = Player.Instance.m_IsCrouching ? Player.Instance.PlayerData.m_CameraOffsetCouchY : Player.Instance.PlayerData.m_CameraOffsetDefaultY;
+            float value = Player.Instance.m_IsCrouching ? Player.Instance.PlayerData.m_CameraOffsetY : Player.Instance.PlayerData.m_CameraOffsetDefaultY;
             
             _cameraOffset = Mathf.Lerp(_cameraOffset, value, Time.deltaTime * Player.Instance.PlayerData.m_CrouchSpeed);
             _thirdPersonFollow.ShoulderOffset.y = _cameraOffset;
