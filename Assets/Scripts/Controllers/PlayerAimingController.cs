@@ -60,20 +60,13 @@ namespace Controllers
         private void Update()
         {
             if (Player.Instance.m_PlayerHandUpAimInput)
-            {
-                HandUpAim(_playerDataSo.m_WeaponAimOffsetY, 
-                    Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchY : _playerDataSo.m_CameraOffsetY);
-            }
+                HandUpAim(_playerDataSo.m_WeaponAimOffsetY,Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchY : _playerDataSo.m_CameraOffsetY);
             else
-            {
-                HandUpAim(_playerDataSo.m_WeaponOffsetDefaultY, 
-                    Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchDefaultY : _playerDataSo.m_CameraOffsetDefaultY);
-            }
+                HandUpAim(_playerDataSo.m_WeaponOffsetDefaultY,Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchDefaultY : _playerDataSo.m_CameraOffsetDefaultY);
 
             
-            if (Player.Instance.m_PlayerLeanRightAimInput)
+            if (Player.Instance.m_PlayerLeanRightAimInput) 
                 LeanAim(_playerDataSo.m_SpineOffsetRightZ, _playerDataSo.m_HeadOffsetRightZ, _playerDataSo.m_WeaponPosOffsetRightX, _playerDataSo.m_CameraOffsetRightX);
-
             else if (Player.Instance.m_PlayerLeanLeftAimInput)
                 LeanAim(_playerDataSo.m_SpineOffsetLeftZ, _playerDataSo.m_HeadOffsetLeftZ, _playerDataSo.m_WeaponPosOffsetLeftX, _playerDataSo.m_CameraOffsetLeftX);
             else
@@ -110,8 +103,7 @@ namespace Controllers
         private void HandUpAim(float weaponPosOffsetX, float cameraOffsetY)
         {
             MultiPositionConstraintData posConstraintData = m_WeaponMultiPositionConstraint.data;
-            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX,
-                Time.deltaTime * _playerDataSo.m_AimSpeed);
+            _weaponOffsetY = Mathf.Lerp(_weaponOffsetY, weaponPosOffsetX, Time.deltaTime * _playerDataSo.m_AimSpeed);
             _newOffset = posConstraintData.offset;
             _newOffset.y = _weaponOffsetY;
             posConstraintData.offset = _newOffset;

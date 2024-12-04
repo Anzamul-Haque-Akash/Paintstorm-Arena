@@ -671,7 +671,7 @@ Transform:
   m_GameObject: {fileID: 2267898013970993153}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10032402, y: -0.13242011, z: 0.013473405, w: 0.98601145}
-  m_LocalPosition: {x: 0.4, y: 1.5600001, z: -3}
+  m_LocalPosition: {x: 0.4, y: 1.5600001, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0.4, y: -0.56, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
-  CameraDistance: 3
+  CameraDistance: 4
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2198,7 +2198,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
@@ -2208,7 +2208,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.92
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f99b5bb02948b204aa616163316d53a8,
         type: 3}
@@ -2545,7 +2545,7 @@ MonoBehaviour:
   m_PlayerJumpInput: 0
   m_PlayerReloadInput: 0
   m_PlayerShootInput: 0
-  m_PlayerCrouchAimInput: 0
+  m_PlayerHandUpAimInput: 0
   m_PlayerLeanRightAimInput: 0
   m_PlayerLeanLeftAimInput: 0
   m_IsJumping: 0

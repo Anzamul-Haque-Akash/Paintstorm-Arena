@@ -42,7 +42,7 @@ MonoBehaviour:
   m_WeaponOffsetDefaultY: 0.12
   m_WeaponAimOffsetY: 0.35
   m_ZoomInValue: 1
-  m_ZoomOutValue: 3
+  m_ZoomOutValue: 4
   m_TurnSpeed: 15
   m_AimSpeed: 12
   m_ZoomInAndOutSpeed: 25
