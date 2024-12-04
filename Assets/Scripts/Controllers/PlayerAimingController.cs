@@ -61,12 +61,12 @@ namespace Controllers
         {
             if (Player.Instance.m_PlayerHandUpAimInput)
             {
-                HandUpAim(_playerDataSo.m_HandUpAimOffsetY, 
+                HandUpAim(_playerDataSo.m_WeaponAimOffsetY, 
                     Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchY : _playerDataSo.m_CameraOffsetY);
             }
             else
             {
-                HandUpAim(_playerDataSo.m_HandUpAimOffsetDefaultY, 
+                HandUpAim(_playerDataSo.m_WeaponOffsetDefaultY, 
                     Player.Instance.m_IsCrouching ? _playerDataSo.m_CameraOffsetCrouchDefaultY : _playerDataSo.m_CameraOffsetDefaultY);
             }
 

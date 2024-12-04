@@ -45,8 +45,8 @@ namespace SOs
         public float m_CameraOffsetCrouchDefaultY;
         public float m_CameraOffsetCrouchY;
         [Space]
-        public float m_HandUpAimOffsetDefaultY;
-        public float m_HandUpAimOffsetY;
+        public float m_WeaponOffsetDefaultY;
+        public float m_WeaponAimOffsetY;
         
         [Header("Player Camera Zoom IN and OUT Data")]
         public float m_ZoomInValue;

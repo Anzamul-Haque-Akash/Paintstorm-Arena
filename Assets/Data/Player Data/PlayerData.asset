@@ -39,8 +39,8 @@ MonoBehaviour:
   m_CameraOffsetY: -0.3
   m_CameraOffsetCrouchDefaultY: -1.05
   m_CameraOffsetCrouchY: -0.8
-  m_HandUpAimOffsetDefaultY: 0.12
-  m_HandUpAimOffsetY: 0.35
+  m_WeaponOffsetDefaultY: 0.12
+  m_WeaponAimOffsetY: 0.35
   m_ZoomInValue: 1
   m_ZoomOutValue: 3
   m_TurnSpeed: 15
